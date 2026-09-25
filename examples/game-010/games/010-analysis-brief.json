@@ -1,0 +1,285 @@
+{
+ "engine": "Stockfish 17.1",
+ "positions": {
+  "rnbqkb1r/1p3pp1/p2ppn1p/8/3NP2B/2N5/PPP2PPP/R2QKB1R w KQkq - 0 8": {
+   "depth": 18,
+   "lines": [
+    {
+     "cp": 43,
+     "mate": null,
+     "pv": [
+      "f2f4",
+      "d8b6",
+      "a2a3",
+      "f8e7",
+      "h4f2",
+      "b6c7",
+      "d1f3",
+      "b8d7",
+      "e1c1",
+      "b7b5",
+      "g2g4",
+      "c8b7",
+      "h2h4"
+     ],
+     "depth": 18,
+     "restricted": true
+    },
+    {
+     "cp": 16,
+     "mate": null,
+     "pv": [
+      "f1e2",
+      "f8e7",
+      "e1g1",
+      "e8g8",
+      "f2f4",
+      "c8d7",
+      "g1h1",
+      "b8c6",
+      "d4b3",
+      "b7b5",
+      "a2a3",
+      "f6e4",
+      "h4e7",
+      "e4c3",
+      "e7d8",
+      "c3d1"
+     ],
+     "depth": 18,
+     "restricted": true
+    }
+   ]
+  },
+  "r4rk1/5pp1/p1R1p2p/8/8/6P1/PPP2P1P/2KR4 w - - 3 21": {
+   "depth": 18,
+   "lines": [
+    {
+     "cp": 358,
+     "mate": null,
+     "pv": [
+      "d1d6",
+      "a6a5",
+      "c2c4",
+      "g7g5",
+      "c1c2",
+      "g8g7",
+      "c2c3",
+      "h6h5",
+      "c6a6",
+      "g7f6",
+      "a6a8",
+      "f8a8",
+      "b2b3",
+      "h5h4",
+      "c4c5",
+      "f6e5",
+      "g3h4",
+      "g5h4"
+     ],
+     "depth": 18,
+     "restricted": true
+    },
+    {
+     "cp": 358,
+     "mate": null,
+     "pv": [
+      "d1d4",
+      "e6e5",
+      "d4e4",
+      "f7f6",
+      "e4a4",
+      "a8b8",
+      "c6a6",
+      "f6f5",
+      "a4c4",
+      "e5e4",
+      "a6d6",
+      "b8e8",
+      "d6d4"
+     ],
+     "depth": 18,
+     "restricted": true
+    }
+   ]
+  },
+  "r4r2/5pp1/R2Rp1kp/p7/8/1P4P1/P1P2P1P/2K5 w - - 1 24": {
+   "depth": 20,
+   "lines": [
+    {
+     "cp": 404,
+     "mate": null,
+     "pv": [
+      "c1b2",
+      "g6f5",
+      "a6a8",
+      "f8a8",
+      "c2c4",
+      "e6e5",
+      "a2a3",
+      "e5e4",
+      "b3b4",
+      "a5b4",
+      "a3b4",
+      "f5e5",
+      "d6d5",
+      "e5e6",
+      "b4b5",
+      "f7f5",
+      "b2c3",
+      "g7g5",
+      "c3d4",
+      "a8a2"
+     ],
+     "depth": 20,
+     "restricted": true
+    },
+    {
+     "cp": 397,
+     "mate": null,
+     "pv": [
+      "c2c4",
+      "g6f5",
+      "a6a8",
+      "f8a8",
+      "c1b2",
+      "f5g4",
+      "a2a3",
+      "f7f5",
+      "c4c5",
+      "g4f3",
+      "d6d2",
+      "e6e5",
+      "b3b4",
+      "a8b8",
+      "b2b3",
+      "g7g5",
+      "b3c4",
+      "a5b4",
+      "a3b4",
+      "e5e4"
+     ],
+     "depth": 20,
+     "restricted": true
+    },
+    {
+     "cp": 290,
+     "mate": null,
+     "pv": [
+      "a2a4",
+      "g6f5",
+      "a6a8",
+      "f8a8",
+      "d6d7",
+      "f5f6",
+      "c2c4",
+      "e6e5",
+      "d7b7",
+      "f6e6",
+      "c1d2",
+      "g7g5",
+      "g3g4",
+      "f7f6",
+      "h2h3",
+      "a8d8",
+      "d2e2",
+      "h6h5",
+      "b7b5",
+      "h5g4"
+     ],
+     "depth": 20,
+     "restricted": true
+    }
+   ]
+  },
+  "r7/5pp1/3Rp2p/p4k2/8/1P4P1/PKP2P1P/8 w - - 0 26": {
+   "depth": 20,
+   "lines": [
+    {
+     "cp": 401,
+     "mate": null,
+     "pv": [
+      "c2c4",
+      "e6e5",
+      "a2a3",
+      "e5e4",
+      "b3b4",
+      "a5b4",
+      "a3b4",
+      "f5e5",
+      "d6d1",
+      "f7f5",
+      "b2b3",
+      "g7g5",
+      "c4c5",
+      "f5f4",
+      "c5c6",
+      "e4e3",
+      "f2e3",
+      "f4e3",
+      "b4b5",
+      "e3e2"
+     ],
+     "depth": 20,
+     "restricted": true
+    },
+    {
+     "cp": 367,
+     "mate": null,
+     "pv": [
+      "d6d7",
+      "g7g5",
+      "d7f7",
+      "f5e4",
+      "h2h4",
+      "e6e5",
+      "h4g5",
+      "h6g5",
+      "g3g4",
+      "a8h8",
+      "f7f5",
+      "h8g8",
+      "a2a4",
+      "g8g7",
+      "f2f3",
+      "e4e3",
+      "c2c3",
+      "g7e7",
+      "b3b4",
+      "e3d3"
+     ],
+     "depth": 20,
+     "restricted": true
+    },
+    {
+     "cp": 291,
+     "mate": null,
+     "pv": [
+      "d6d4",
+      "e6e5",
+      "d4d2",
+      "e5e4",
+      "c2c4",
+      "f5e6",
+      "a2a3",
+      "g7g5",
+      "b3b4",
+      "f7f5",
+      "b4b5",
+      "f5f4",
+      "b2c3",
+      "f4f3",
+      "c4c5",
+      "e4e3",
+      "f2e3",
+      "a8f8",
+      "d2d1",
+      "f3f2"
+     ],
+     "depth": 20,
+     "restricted": true
+    }
+   ]
+  }
+ }
+}

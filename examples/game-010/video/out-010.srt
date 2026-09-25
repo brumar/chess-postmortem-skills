@@ -1,0 +1,436 @@
+1
+00:00:01,200 --> 00:00:01,955
+Game ten.
+
+2
+00:00:02,075 --> 00:00:06,521
+You are White, fifteen minutes plus ten seconds, and you win in forty moves.
+
+3
+00:00:06,641 --> 00:00:13,317
+Before move one you decided to meet the Sicilian the open way, and you recorded yourself thinking out loud until move thirty one.
+
+4
+00:00:13,437 --> 00:00:14,366
+The Najdorf.
+
+5
+00:00:14,486 --> 00:00:15,705
+Three acts to come.
+
+6
+00:00:15,825 --> 00:00:18,669
+A planning question you asked out loud at move eight.
+
+7
+00:00:18,789 --> 00:00:21,599
+A trick you saw coming and still counted one move short.
+
+8
+00:00:21,719 --> 00:00:25,039
+And a rook ending you converted with a plan you also said out loud.
+
+9
+00:00:25,859 --> 00:00:31,862
+You weighed bishop to c4 against bishop to g5, and chose g5 so that you could always take the knight.
+
+10
+00:00:31,982 --> 00:00:33,456
+The engine ranks it first.
+
+11
+00:00:33,576 --> 00:00:37,164
+Pawn to h6 asks the bishop the question one move too early.
+
+12
+00:00:37,284 --> 00:00:43,240
+The pawn on e7 still blocks the queen, so if you take on f6, Black has to recapture with a pawn.
+
+13
+00:00:44,060 --> 00:00:46,486
+You retreated, naturally, as you put it.
+
+14
+00:00:46,606 --> 00:00:48,777
+Taking was worth more than half a pawn.
+
+15
+00:00:48,897 --> 00:00:58,011
+After the pawn recaptures, Black's king has no safe home, d5 and f5 are holes, and Black must spend pawn to h5 just to keep your queen out.
+
+16
+00:00:58,131 --> 00:01:00,534
+The h6 move becomes a lost tempo.
+
+17
+00:01:00,654 --> 00:01:05,960
+When a pawn questions your pinning bishop, check whether taking wrecks the structure before you retreat.
+
+18
+00:01:08,280 --> 00:01:10,277
+Here is the quiet moment of the game.
+
+19
+00:01:10,397 --> 00:01:15,203
+Nothing is hanging and there is no tactic, only a question, and you asked it out loud.
+
+20
+00:01:15,323 --> 00:01:17,262
+Bishop to c4 or to e2.
+
+21
+00:01:17,382 --> 00:01:18,834
+Castle short or long.
+
+22
+00:01:18,954 --> 00:01:20,800
+Pawn to f4 now, or later.
+
+23
+00:01:20,920 --> 00:01:28,652
+At one common depth, bishop to e2, queen to e2, queen to f3 and pawn to a3 all sit within about a tenth of a pawn.
+
+24
+00:01:28,772 --> 00:01:31,059
+Pawn to f4 stands half a pawn clear.
+
+25
+00:01:31,179 --> 00:01:34,174
+So among the quiet moves the choice did not matter.
+
+26
+00:01:34,294 --> 00:01:37,336
+The plan did, and it starts with the pawn you postponed.
+
+27
+00:01:39,456 --> 00:01:40,304
+Your plan:
+
+28
+00:01:40,424 --> 00:01:41,515
+f4 at once.
+
+29
+00:01:41,635 --> 00:01:46,604
+The bishop comes home from h4 to f2, where it guards d4 against the queen raid.
+
+30
+00:01:46,724 --> 00:01:50,114
+The queen goes to f3 to hold e4, and you castle long.
+
+31
+00:01:50,234 --> 00:01:51,024
+Two rules.
+
+32
+00:01:51,144 --> 00:01:53,942
+The pawn on e4 always has a second defender.
+
+33
+00:01:54,062 --> 00:01:56,070
+The bishop never waits on h4.
+
+34
+00:01:56,190 --> 00:01:58,733
+Black's plan is the classic Najdorf one.
+
+35
+00:01:58,853 --> 00:02:03,613
+Pawn to b5 and b4 chases the c3 knight, the only defender of e4.
+
+36
+00:02:03,733 --> 00:02:06,566
+Pawn to g5 chases your bishop off h4.
+
+37
+00:02:06,686 --> 00:02:09,159
+Both plans are about the same two things:
+
+38
+00:02:09,279 --> 00:02:12,181
+the pawn on e4, and the loose bishop on h4.
+
+39
+00:02:12,301 --> 00:02:17,212
+You chose bishop to e2, then queen to d2, and that is where the fault line opened.
+
+40
+00:02:17,332 --> 00:02:25,726
+Your e4 pawn had one defender, the h4 bishop had none, and the only thing standing between it and the e7 bishop was the knight on f6.
+
+41
+00:02:25,846 --> 00:02:32,069
+In the engine's plan, knight takes e4 simply loses a piece, because the queen on f3 covers the square.
+
+42
+00:02:34,389 --> 00:02:36,723
+Right after playing queen to d2 you said it:
+
+43
+00:02:36,843 --> 00:02:38,956
+that is bad, the knight takes e4.
+
+44
+00:02:39,076 --> 00:02:40,063
+And it came.
+
+45
+00:02:40,183 --> 00:02:45,070
+The knight hits your queen and your knight, and it unmasks the e7 bishop onto yours.
+
+46
+00:02:45,190 --> 00:02:47,303
+But the unmasked bishop is loose too.
+
+47
+00:02:47,423 --> 00:02:49,316
+You looked at exactly this line.
+
+48
+00:02:49,436 --> 00:02:53,639
+Bishop takes, knight takes, bishop takes, and you called it a mass trade.
+
+49
+00:02:53,759 --> 00:02:57,880
+One move further, Black's knight is still on d2 and your bishop is on d8.
+
+50
+00:02:58,000 --> 00:03:01,855
+Both are hanging, Black is to move, and only one can be saved.
+
+51
+00:03:01,975 --> 00:03:03,844
+White comes out a clean piece up.
+
+52
+00:03:05,964 --> 00:03:09,157
+Instead the knight took on e4 and the bishop took on h4.
+
+53
+00:03:09,277 --> 00:03:11,285
+Let's call it an attack, you said.
+
+54
+00:03:11,405 --> 00:03:13,065
+The engine sees no attack:
+
+55
+00:03:13,185 --> 00:03:17,876
+Black has the pawn and the bishop pair, and the bishop on h4 is already eyeing f2.
+
+56
+00:03:18,696 --> 00:03:22,608
+A pawn down, your compensation was one weak pawn, on d6.
+
+57
+00:03:22,728 --> 00:03:26,699
+You asked whether trades would win it back, and the instinct was right.
+
+58
+00:03:26,819 --> 00:03:29,280
+But first stop the pawn from advancing.
+
+59
+00:03:29,400 --> 00:03:34,114
+Pawn to c4 was on offer twice, and it keeps pawn to d5 from being free.
+
+60
+00:03:34,934 --> 00:03:36,490
+Then Black handed it back.
+
+61
+00:03:36,610 --> 00:03:39,106
+Until now d6 was safe for one reason:
+
+62
+00:03:39,226 --> 00:03:43,661
+your own knight on d4 blocked the file, so the queen and rook could not reach it.
+
+63
+00:03:43,781 --> 00:03:46,440
+Knight to c6 offers to trade off that plug.
+
+64
+00:03:46,560 --> 00:03:52,678
+Knight takes, pawn takes, and knight takes d6 with check, so Black never gets to add a defender.
+
+65
+00:03:52,798 --> 00:03:55,805
+The pawn is back, and Black's queenside is in pieces.
+
+66
+00:03:58,425 --> 00:04:01,269
+Queens off, a pawn up, and you had a plan:
+
+67
+00:04:01,389 --> 00:04:05,674
+bishop to f3 against c6, then doubled rooks on the seventh rank.
+
+68
+00:04:05,794 --> 00:04:06,896
+The plan is fine.
+
+69
+00:04:07,016 --> 00:04:08,096
+The order is not.
+
+70
+00:04:08,216 --> 00:04:15,426
+King to e7 hits the rook on d6, and now bishop takes c6 is no longer check, so the king simply takes the rook.
+
+71
+00:04:15,546 --> 00:04:19,052
+The king also covers d7, which shuts your seventh rank.
+
+72
+00:04:19,172 --> 00:04:20,960
+The engine gives under one pawn.
+
+73
+00:04:22,580 --> 00:04:24,844
+Rook to d1 first defends d6.
+
+74
+00:04:24,964 --> 00:04:29,515
+Then the same king move runs into a check on d7, and the bishop on b7 falls.
+
+75
+00:04:30,335 --> 00:04:33,911
+Black played rook to d8 instead, and you saw what it allowed.
+
+76
+00:04:34,031 --> 00:04:38,617
+You worked out bishop takes c6 with check at the board, and it wins a clean pawn.
+
+77
+00:04:38,737 --> 00:04:41,837
+The rook ending that follows is the real test of the game.
+
+78
+00:04:41,957 --> 00:04:45,289
+You are a pawn up, with three pawns against one on the queenside.
+
+79
+00:04:49,109 --> 00:04:51,396
+At move twenty three you weighed two plans:
+
+80
+00:04:51,516 --> 00:04:55,463
+walk the king over to collect the a-pawn, or roll the c-pawn at once.
+
+81
+00:04:55,583 --> 00:04:59,763
+Pawn to b3 serves both, an escape square that also prepares c4.
+
+82
+00:04:59,883 --> 00:05:02,542
+You hesitated between king to b2 and c4.
+
+83
+00:05:02,662 --> 00:05:05,077
+The engine scores them exactly the same.
+
+84
+00:05:05,797 --> 00:05:11,613
+Once the rooks came off, you pushed c4 to put on the pressure, and that was the engine's first choice.
+
+85
+00:05:12,433 --> 00:05:14,778
+Then came your clearest decision of the game.
+
+86
+00:05:14,898 --> 00:05:16,698
+The simple plan, you said:
+
+87
+00:05:16,818 --> 00:05:19,825
+a3, b4, and push both pawns.
+
+88
+00:05:19,945 --> 00:05:22,720
+Push c5 at once, and the lone pawn falls.
+
+89
+00:05:22,840 --> 00:05:29,283
+The rook attacks it from c8, b4 cannot support it while the a-pawn can take, and the king drives your rook away.
+
+90
+00:05:29,403 --> 00:05:30,460
+The win is gone.
+
+91
+00:05:32,680 --> 00:05:37,080
+With a3 first, the trade on b4 leaves you two connected passed pawns.
+
+92
+00:05:37,900 --> 00:05:40,245
+Black's king went raiding on the other wing.
+
+93
+00:05:40,365 --> 00:05:43,720
+Your rook retreated to d1, to avoid complications.
+
+94
+00:05:43,840 --> 00:05:47,962
+On d2 it would still guard f2, and the raid would find nothing to take.
+
+95
+00:05:48,082 --> 00:05:52,656
+When you finally pushed c5, you called yourself an idiot for not doing it earlier.
+
+96
+00:05:52,776 --> 00:05:57,838
+Before a3 it would have thrown the win away, and a move later it was worth a fifth of a pawn.
+
+97
+00:05:57,958 --> 00:06:00,118
+A move-order detail, not a mistake.
+
+98
+00:06:00,238 --> 00:06:02,734
+It did fall, but the raid is too slow.
+
+99
+00:06:02,854 --> 00:06:06,221
+Every king move on the kingside is a free push for your c-pawn.
+
+100
+00:06:07,641 --> 00:06:08,790
+The final race.
+
+101
+00:06:08,910 --> 00:06:12,416
+Black is lost after any move here, and the race shows why:
+
+102
+00:06:12,536 --> 00:06:16,495
+the e-pawn runs, your b-pawn runs, and Black is one tempo short.
+
+103
+00:06:19,615 --> 00:06:24,480
+Pawn to e2 is one step from queening, but your rook needs only one move to cover e1.
+
+104
+00:06:24,600 --> 00:06:28,663
+Rook takes f7 with check, then rook to e7, behind the pawn.
+
+105
+00:06:28,783 --> 00:06:31,640
+Pawn to b8 is next, and Black resigns.
+
+106
+00:06:32,460 --> 00:06:33,562
+One lesson to keep.
+
+107
+00:06:33,682 --> 00:06:42,007
+When the position asks a planning question, the answer is usually the move that shores up your weak points now, not the one that keeps every option open.
+
+108
+00:06:42,127 --> 00:06:44,031
+At move eight that was f4.
+
+109
+00:06:44,151 --> 00:06:47,146
+The rook ending, you planned out loud and played well.
+

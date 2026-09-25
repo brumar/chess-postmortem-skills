@@ -1,0 +1,124 @@
+[
+  {
+    "ply": 11,
+    "comment": "The Najdorf's sharpest main line, and at depth 24 the engine's own first choice (+0.4; the sweep's 0.25 gap to 6.Be3 does not survive a deeper look). On the tape: 'Bc4 or b5 or g5?' b5 is covered by ...a6. 6.Bc4 (the Fischer-Sozin, +0.2) is playable; the ...b5-b4 idea you mention is real, which is why that line retreats Bb3 at once. 6.Bg5 keeps the option of Bxf6 open. As for ...Qb6: right now 6...Qb6 7.Bxf6 gxf6 8.Nd5 is good for White (+1.4, see the next move). The Qb6 to respect is the Poisoned Pawn, 6...e6 7.f4 Qb6, where Qd2 or Nb3 are the standard answers."
+  },
+  {
+    "ply": 12,
+    "glyph": "?!",
+    "comment": "The whole question of 6.Bg5 is how Black meets Bxf6. After 6...e6 (or ...Nbd7) the answer is ready: the d8-f6 diagonal is open, so Bxf6 Qxf6 costs Black nothing and even hands over the bishop pair. 6...h6 asks the question one move too early: e7 still blocks the queen, so Bxf6 forces a pawn recapture. ...exf6 leaves d6 backward and d5 a permanent hole (+1.7); ...gxf6 wrecks the kingside, and the h6 pawn becomes a target for Qh5 as soon as the f8 bishop leaves. The engine rates it +1.0 against +0.4 for 6...e6.",
+    "variations": [
+      {
+        "line": [
+          {
+            "san": "e6"
+          },
+          {
+            "san": "f4",
+            "comment": "the main line; now ...Qb6 is the Poisoned Pawn"
+          },
+          {
+            "san": "Qb6"
+          },
+          {
+            "san": "Qd2"
+          },
+          {
+            "san": "Qxb2"
+          }
+        ],
+        "comment": "+0.4: standard Najdorf theory, nothing conceded"
+      },
+      {
+        "line": [
+          {
+            "san": "e6"
+          },
+          {
+            "san": "Bxf6",
+            "comment": "the capture ...h6 was provoking"
+          },
+          {
+            "san": "Qxf6",
+            "comment": "possible only because e7 has moved: healthy pawns, and Black keeps the two bishops"
+          }
+        ],
+        "comment": "-0.3: with ...e6 in, Bxf6 is harmless"
+      },
+      {
+        "line": [
+          {
+            "san": "Qb6",
+            "comment": "the move asked about on tape"
+          },
+          {
+            "san": "Bxf6",
+            "comment": "take first: now ...Qxf6 is impossible (e7 is in the way), so the structure breaks"
+          },
+          {
+            "san": "gxf6"
+          },
+          {
+            "san": "Nd5",
+            "comment": "hits the queen and f6; b2 no longer matters"
+          },
+          {
+            "san": "Qa5+"
+          },
+          {
+            "san": "c3"
+          }
+        ],
+        "comment": "+1.4: 6...Qb6 at once does not work; the real ...Qb6 comes only after ...e6 and f4"
+      }
+    ]
+  },
+  {
+    "ply": 13,
+    "glyph": "?!",
+    "comment": "On tape: 'Je recule naturellement en h4... il peut me manger potentiellement', with long castling planned if Black pushed a second time. The push is not the danger: 7...g5 8.Bg3 is +0.4 and fine for White. The problem is that 7.Bh4 passes on the exact capture ...h6 invited. 7.Bxf6 forces a pawn recapture and gives White a lasting plus (+1.0 vs +0.4): Black's king has no safe home, the light squares d5, f5 and f7 are weak, and Black must spend ...h5 to stop Qh5, so ...h6 was a lost tempo. On h4 the bishop is loose and pins nothing yet, and once ...e6 is in, it is the piece the ...Nxe4/...Bxh4 trick later hits. Rule: when the opponent spends a tempo to question your pinning bishop, check whether taking now damages his structure before you retreat.",
+    "variations": [
+      {
+        "line": [
+          {
+            "san": "Bxf6"
+          },
+          {
+            "san": "gxf6",
+            "comment": "...exf6 is worse (+1.7): backward d6, and d5 becomes a permanent square for the c3 knight"
+          },
+          {
+            "san": "Bc4",
+            "comment": "aims at f7 and e6; the threat is Qh5, hitting f7 and h6"
+          },
+          {
+            "san": "h5",
+            "comment": "nearly forced: the natural 8...e6 or 8...Bg7 run into 9.Qh5 at +2.2 or more. The h-pawn moves again, so ...h6 was a wasted tempo"
+          },
+          {
+            "san": "Qe2",
+            "comment": "not Qh5 any more; the queen prepares O-O-O and keeps f3 available to meet ...Bg4"
+          },
+          {
+            "san": "Bg4"
+          },
+          {
+            "san": "f3",
+            "comment": "blunts the pin; the bishop has to retreat, another lost tempo"
+          },
+          {
+            "san": "Bd7"
+          },
+          {
+            "san": "O-O-O"
+          },
+          {
+            "san": "e6",
+            "comment": "Black still has no safe square for the king; White plays f4-f5 against e6"
+          }
+        ],
+        "comment": "+1.0: a lasting structural plus, with no tactics needed"
+      }
+    ]
+  }
+]

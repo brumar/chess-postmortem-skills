@@ -1,0 +1,49 @@
+[
+ {
+  "ply": 14,
+  "comment": "The plan pause. A 6.Bg5 Najdorf with ...h6 Bh4 thrown in, White to move, +0.4. Nothing is hanging, and you asked the right questions out loud: \"Bc4, ou tranquillement e2 et petit roque? ... laisser les deux routes ouvertes ... f4 plus tard\" (Bc4 or Be2, short or long castling, f4 later). Here are the answers at one common depth (26): 8.f4 +0.43, 8.Qe2 0.00, 8.a3 -0.01, 8.Qf3 -0.04, 8.Be2 -0.12, 8.Bc4 -0.41, 8.Qd2 -1.40. So Be2 beat Bc4 by 0.3 and your sense that c4 bites on granite was right. But the gap that matters is f4 now versus everything else: 0.55 between f4 and the move played, while Qe2, a3, Qf3 and Be2 sit within 0.12 of each other. The position has one plan and it starts with the pawn move you postponed. 'Later' costs: after 8.Be2 Be7, 9.f4 is only -0.20. Why now: after 8.f4 the answer ...g5 is +1.12 (fxg5 opens the f-file for you), the h4 bishop gets f2 as a home where it guards d4 against ...Qb6, and the queen goes to f3 to hold e4, then long castling. Black's plan is the classic Najdorf one: ...Be7, ...b5, ...Bb7, ...Nbd7, then ...b4 to chase the c3 knight, which is the only thing defending e4, and ...g5 to chase the h4 bishop. Given a free move (8.Rb1 as a pass) that is -0.47, and a few natural moves later -1.2. Both plans are about the same two things: the pawn on e4 and the loose bishop on h4. On short versus long: once you chose Be2, short castling was the right partner (9.O-O -0.12 was best), and at move 9 you asked 'Qd2 ou Qd3?': Qd3 -0.20, Qd2 -0.34, a 0.14 difference that does not matter by itself. What it hides is that Qd3 also guards e4 and Qd2 does not. That is the structural point. In the game the only defender of e4 was the c3 knight, and the h4 bishop was loose behind the e7 bishop, so 9...Nxe4 became a question with two answers: 10.Bxe7 +4.25 and 10.Nxe4 Bxh4 -1.29. In the engine plan that question never gets asked: after 8.f4 Be7 9.Qf3, ...Nxe4 is simply +4.30 because the queen covers e4, and after ...Qb6 Bf2 there is no bishop left on h4 to collect. So the drift here is honest but small: one real inaccuracy (8.Be2, 0.55) and one near-equal move (9.Qd2, 0.22 behind 9.O-O). The crash that followed was a missed tactic, not a lack of plan, but it sat exactly on the fault line both plans are about.",
+  "variations": [
+   {
+    "line": [
+     {"san": "f4", "comment": "now, while ...g5 is still a mistake (+1.12): it would just open the f-file"},
+     {"san": "Qb6", "comment": "Black's best, hitting d4 and b2"},
+     {"san": "a3", "comment": "takes b4 away and keeps b2 quiet"},
+     {"san": "Be7"},
+     {"san": "Bf2", "comment": "the bishop comes home: it guards d4 against the queen and is no longer a loose piece on h4"},
+     {"san": "Qc7"},
+     {"san": "Qf3", "comment": "the queen holds e4, so ...Nxe4 is off the table"},
+     {"san": "Nbd7"},
+     {"san": "O-O-O", "comment": "+0.55: long castling, and g4-g5 is the follow-up"}
+    ],
+    "comment": "White's plan (+0.4 to +0.55): f4 first, bishop back to f2, queen to f3, castle long. After that, e4 is solidly defended and the h4 bishop is no longer a target."
+   },
+   {
+    "line": [
+     {"san": "Rb1", "comment": "a pass, to show what Black wants"},
+     {"san": "b5"},
+     {"san": "Be2"},
+     {"san": "Be7"},
+     {"san": "O-O"},
+     {"san": "Bb7", "comment": "bishop and f6 knight both aim at e4"},
+     {"san": "Bf3", "comment": "now e4 needs a piece to guard it"},
+     {"san": "Nbd7"},
+     {"san": "a4"},
+     {"san": "b4", "comment": "chases the c3 knight, e4's only real defender"},
+     {"san": "Na2"},
+     {"san": "g5", "comment": "-1.2: and now the h4 bishop is chased too, with ...Ne5 and ...Nxe4 coming"}
+    ],
+    "comment": "Black's plan: ...b5-b4 kicks the knight away from e4, ...g5 kicks the bishop off h4, and e4 falls. It is the mirror of White's plan and it is about the same pawn."
+   },
+   {
+    "line": [
+     {"san": "Be2", "comment": "the game: -0.12, 0.55 behind f4"},
+     {"san": "Be7"},
+     {"san": "Qd2", "comment": "-0.34 (9.O-O -0.12, 9.Qd3 -0.20): e4 is now defended by the c3 knight alone"},
+     {"san": "Nxe4", "comment": "tempting because the knight hits the queen and the h4 bishop is loose, but it is refuted"},
+     {"san": "Bxe7", "comment": "+4.25: the in-between capture. 10.Nxe4 Bxh4 was -1.29 and a pawn down"}
+    ],
+    "comment": "How the game got to its crash. The engine plan puts the queen on f3 or the bishop on f2, and this position never arises."
+   }
+  ]
+ }
+]

@@ -1,0 +1,175 @@
+[
+  {
+    "ply": 32,
+    "glyph": "?!",
+    "comment": "Bb7 puts the bishop where a rook on d7 will hit it, and leaves d7 open for exactly that. 16...Bd7 (+2.7 instead of +3.3) guards c6 and plugs the d-file, so White's rooks have no entry square. Black is worse either way (king in the centre, c6 and a6 weak, rook h8 asleep), but Bd7 keeps the rooks out.",
+    "variations": [
+      {
+        "line": [
+          {
+            "san": "Bd7",
+            "comment": "blocks the d-file and defends c6"
+          },
+          {
+            "san": "Rhd1"
+          },
+          {
+            "san": "Ra7",
+            "comment": "the a-rook covers the 7th rank sideways"
+          },
+          {
+            "san": "Bf3"
+          },
+          {
+            "san": "Ke7"
+          },
+          {
+            "san": "Bxc6",
+            "comment": "with d1 already guarding d6, Bxc6 works: ...Kxd6 is impossible"
+          },
+          {
+            "san": "Bxc6"
+          },
+          {
+            "san": "Rxc6"
+          }
+        ],
+        "comment": "+2.7: White still wins c6, but the order is Rhd1 first, then Bf3. Worth remembering for the next move."
+      }
+    ]
+  },
+  {
+    "ply": 33,
+    "glyph": "??",
+    "comment": "The plan was Bf3 to hit c6, then double on the 7th (\"l'idée ce serait de doubler sur la septième rangée\"). The order is wrong. Bf3 leaves the d6 rook without a defender, and 17...Ke7! hits it with tempo: now Bxc6 fails to ...Kxd6, the king covers d7 so the 7th rank is shut, and after the forced Rhd1 Black plays ...Rad8 and trades all four rooks into a same-coloured bishop ending worth only +0.7. 17.Rhd1 first (+3.4) protects d6, and then ...Ke7 is met by Rd7+ winning the b7 bishop. Once the rooks are on the d-file, Bf3 and Bxc6 come later with no counterplay. Rule: when an advanced rook is undefended, defend it before starting the attack.",
+    "variations": [
+      {
+        "line": [
+          {
+            "san": "Rhd1",
+            "comment": "defends d6 and prepares Rd7, which hits b7 and f7"
+          },
+          {
+            "san": "c5",
+            "comment": "Black's most stubborn try: gets the pawn off c6 and opens the long diagonal for the bishop"
+          },
+          {
+            "san": "Rd7",
+            "comment": "the 7th rank, which was the point of the whole plan"
+          },
+          {
+            "san": "Bd5"
+          },
+          {
+            "san": "Rc7",
+            "comment": "going after c5; the other rook holds the d-file"
+          },
+          {
+            "san": "O-O",
+            "comment": "the king finally leaves, but the rooks already dominate"
+          },
+          {
+            "san": "c4",
+            "comment": "kicks the bishop off d5, and c5 falls"
+          },
+          {
+            "san": "Be4"
+          },
+          {
+            "san": "Rxc5"
+          }
+        ],
+        "comment": "+3.3: a clean extra pawn, with rooks on the c- and d-files and the 7th rank."
+      },
+      {
+        "line": [
+          {
+            "san": "Rhd1"
+          },
+          {
+            "san": "Ke7",
+            "comment": "the move that punishes Bf3 does not work here"
+          },
+          {
+            "san": "Rd7+",
+            "comment": "with d1 behind it the rook enters with check"
+          },
+          {
+            "san": "Kf6"
+          },
+          {
+            "san": "Rxb7"
+          }
+        ],
+        "comment": "+5.7: the b7 bishop falls. That is the difference between Rhd1 and Bf3."
+      }
+    ]
+  },
+  {
+    "ply": 34,
+    "glyph": "??",
+    "comment": "17...Rd8 attacks the d6 rook but ignores c6, which Bf3 and Rd6 hit twice while only the b7 bishop defends it. 18.Bxc6+ takes the pawn with check. After ...Bxc6 Rxc6 the rook has left d6, so ...Rd8 has nothing to hit. 17...Ke7! (+0.7) was the move: it attacks d6 from a square where Bxc6 is no longer check (...Kxd6 wins a rook for bishop and pawn), then ...Rad8 trades everything down. After 19.Rxc6 White is a pawn up with a 3-v-1 queenside majority (a, b and c against Black's a-pawn), and the c6 rook hits a6 and e6 while the h8 rook and e8 king are still undeveloped: +3.6.",
+    "variations": [
+      {
+        "line": [
+          {
+            "san": "Ke7",
+            "comment": "hits the undefended rook; the king now also covers d6 and d7"
+          },
+          {
+            "san": "Rhd1",
+            "comment": "forced: the rook has no good square, and Bxc6 fails to ...Kxd6",
+            "variations": [
+              {
+                "line": [
+                  {
+                    "san": "Bxc6",
+                    "comment": "the capture that worked a move earlier"
+                  },
+                  {
+                    "san": "Kxd6",
+                    "comment": "not check any more, so the king takes the rook"
+                  },
+                  {
+                    "san": "Bxb7"
+                  },
+                  {
+                    "san": "Ra7"
+                  }
+                ],
+                "comment": "-1.3: bishop and pawn for a rook."
+              }
+            ]
+          },
+          {
+            "san": "Rad8",
+            "comment": "challenges the d-file; White cannot avoid the trades"
+          },
+          {
+            "san": "Rxd8"
+          },
+          {
+            "san": "Rxd8"
+          },
+          {
+            "san": "Rxd8"
+          },
+          {
+            "san": "Kxd8"
+          },
+          {
+            "san": "c4"
+          },
+          {
+            "san": "Kc7",
+            "comment": "the king reaches c7 and guards the weak pawns"
+          },
+          {
+            "san": "c5"
+          }
+        ],
+        "comment": "+0.7: a same-coloured bishop ending with equal pawns. White is better but far from winning."
+      }
+    ]
+  }
+]

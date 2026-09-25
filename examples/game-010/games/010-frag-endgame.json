@@ -1,0 +1,163 @@
+[
+  {
+    "ply": 44,
+    "comment": "22...Rfc8 was the engine's pick: the idle f8-rook goes to face the c-pawn before b3/c4 roll. 22...Kh7 heads the king toward the centre instead (Kh7-g6-f5 took three moves). At depth 24 the two are +3.9 and +4.0, so no real difference.",
+    "variations": [
+      {
+        "line": [
+          {"san": "Rfc8"},
+          {"san": "Rxa8"},
+          {"san": "Rxa8"},
+          {"san": "c4"},
+          {"san": "Rc8", "comment": "the remaining rook sits in front of the c-pawn"},
+          {"san": "b3"},
+          {"san": "Kf8"}
+        ],
+        "comment": "+3.9: the same won rook ending, with Black's rook placed a little better."
+      }
+    ]
+  },
+  {
+    "ply": 53,
+    "comment": "Good decision. His note while choosing this move: \"je vais pousser c5 ... c'est le plan plus simple: on va faire a3, b4, et on pousse nos deux pions\" (\"I'll push c5 ... the simpler plan: a3, b4, and push both pawns\"). He was right to put a3 first. 27.c5 right away drops the pawn: ...Rc8 hits it, b4 can't support it while ...axb4 is possible, and ...f6/...Ke5 drives the d6-rook off its defence. The engine slightly prefers 27.Kc3 (+5.1) to a3 (+4.8), bringing the king up to support the pawns, but that is a small difference.",
+    "variations": [
+      {
+        "line": [
+          {"san": "c5", "comment": "too early: no pawn can come to b4 yet"},
+          {"san": "Rc8", "comment": "hits c5; b4 would be met by ...axb4"},
+          {"san": "c6"},
+          {"san": "f6", "comment": "covers e5 so the king can attack the rook"},
+          {"san": "Kc3"},
+          {"san": "Ke5", "comment": "the d6-rook has to leave, and the c6-pawn loses its defender"},
+          {"san": "Rd4"},
+          {"san": "Rxc6+"}
+        ],
+        "comment": "+0.2: the lone c-pawn falls and White's extra pawn is gone. That's why a3/b4 had to come first."
+      }
+    ]
+  },
+  {
+    "ply": 55,
+    "comment": "The plan he stated at move 27, carried out. 28.c5 was marginally better (+5.5 vs +5.3 at depth 26). With a3 already played, c5 can be backed by b4 next, and White saves the time to bring the king to c3. At move 31 he said \"j'aurais pu faire c5 tout à l'heure, je suis idiot\" (\"I could have played c5 earlier, I'm an idiot\"). Here it was worth 0.2 of a pawn. A move earlier, before a3, it would have thrown away the win (see move 27). 30.c5 was also as good as 30.Rd2. Not idiotic, just a move-order detail.",
+    "variations": [
+      {
+        "line": [
+          {"san": "c5"},
+          {"san": "Ke4"},
+          {"san": "Kc3", "comment": "the king joins the pawns first; b4 can wait"},
+          {"san": "f5"},
+          {"san": "b4"},
+          {"san": "axb4+"},
+          {"san": "axb4"}
+        ],
+        "comment": "+5.5: the game's structure, with White's king already on c3."
+      }
+    ]
+  },
+  {
+    "ply": 58,
+    "comment": "The sweep's 1.0 loss disappears at depth 24-28: 29...Ke5 is +5.7, the same as the engine's first choice 29...e5 (depth 28), and 29...Ra4 is +6.2. Black is lost either way. The only point is speed: with ...e5 the king goes after h2 at once (Kg4-h3xh2), while the game's route Ke5-e4-f3xf2 took four moves.",
+    "variations": [
+      {
+        "line": [
+          {"san": "e5"},
+          {"san": "b5"},
+          {"san": "Kg4"},
+          {"san": "b6"},
+          {"san": "Rb8", "comment": "the rook stops the b-pawn from in front"},
+          {"san": "c5"},
+          {"san": "Kh3", "comment": "the king goes straight for h2, two moves faster than in the game"}
+        ],
+        "comment": "+5.7: kingside counterplay started earlier, but White is still winning."
+      }
+    ]
+  },
+  {
+    "ply": 59,
+    "glyph": "?!",
+    "comment": "His note: \"il attaque ma tour, je recule comme prévu, d1 pour éviter les embrouilles\" (\"he attacks my rook, I retreat as planned, d1 to avoid complications\"). Retreating was correct. The problem is the square. On d2 the rook still guards the second rank, so after ...Ke4-f3 the king finds f2 and h2 defended. On d1 it guards nothing on that rank, and the game's ...Kf3xf2 followed. Rd2 +5.8, Rd1 +5.2 at depth 24. The loss is between two winning evals, so it's about technique only.",
+    "variations": [
+      {
+        "line": [
+          {"san": "Rd2", "comment": "guards f2 and h2 from the side"},
+          {"san": "Ke4", "comment": "...Kf3 now attacks nothing"},
+          {"san": "b5"},
+          {"san": "Rc8"},
+          {"san": "Kc3"},
+          {"san": "f5"},
+          {"san": "b6"}
+        ],
+        "comment": "+5.8: Black's king has no target, and the pawns advance."
+      }
+    ]
+  },
+  {
+    "ply": 62,
+    "glyph": "?!",
+    "comment": "The king raid is Black's only counterplay, but the pawns should go first. 31...f5-f4 breaks up g3 and creates a passed pawn before the c-pawn arrives, with the king supporting it from e4/e3. 31...Kf3 goes for f2, and White doesn't need to defend that pawn. f5 +6.1 vs Kf3 +6.7 (depth 24). Both are lost.",
+    "variations": [
+      {
+        "line": [
+          {"san": "f5"},
+          {"san": "Kb3"},
+          {"san": "f4", "comment": "the break: after the exchanges on g3 a black passer can appear"},
+          {"san": "c6"},
+          {"san": "fxg3"},
+          {"san": "fxg3"},
+          {"san": "h4"},
+          {"san": "c7"},
+          {"san": "hxg3"},
+          {"san": "hxg3"},
+          {"san": "Ke3", "comment": "the king heads for White's rook and the queenside"}
+        ],
+        "comment": "+6.1: White still queens first, but Black gets more play."
+      }
+    ]
+  },
+  {
+    "ply": 64,
+    "glyph": "?",
+    "comment": "32...Kxf2 wins a pawn but gives White c7 with tempo, threatening Rd8 and c8. Black's king on f2 is far from the c-pawn, and the best defence is already 33...Ke3 34.Rd8 Rxd8 35.cxd8=Q, giving the rook. 32...Ke2 attacks the rook first. It has to leave the d-file, so Rd8 no longer supports the pawn. Then ...h4 gxh4 ...g4 gets a kingside passer moving, and f2 can be taken later. Kxf2 +8.7, Ke2 +7.8, h4 +7.4 (depth 24; the sweep's 2.8 is inflated). Lost either way.",
+    "variations": [
+      {
+        "line": [
+          {"san": "Ke2", "comment": "attacks the rook with tempo"},
+          {"san": "Rc1", "comment": "off the d-file; Rd8 is no longer available to support c7-c8"},
+          {"san": "h4"},
+          {"san": "gxh4"},
+          {"san": "g4", "comment": "the g-pawn becomes a runner"},
+          {"san": "c7"},
+          {"san": "Kxf2", "comment": "now f2 falls with the king escorting the g-pawn"},
+          {"san": "b5"},
+          {"san": "g3"},
+          {"san": "hxg3"},
+          {"san": "e5"}
+        ],
+        "comment": "+7.2: still lost, but Black has pawns moving instead of a stray king."
+      }
+    ]
+  },
+  {
+    "ply": 65,
+    "comment": "The obvious push, and the engine's first choice too (+7.6). The sweep's huge 'loss' here is a mate-score artifact, not a mistake."
+  },
+  {
+    "ply": 68,
+    "glyph": "??",
+    "comment": "The race is lost by one tempo: 35.b5 e4 36.b6 e3 37.b7, and the c8-rook cannot cover both c7 and b8. After 37...Rxc7 38.Rxc7 e2 the pawn is one step from e1, but the rook on c7 needs only one move to control it: 39.Rxf7+ Kg2 40.Re7 (39.Rc1 also works), and b8=Q follows. The engine's best defence, 34...Ra8 (+9.4 at depth 24; the sweep listed ...h4), puts the rook behind the b-pawn to give it for the new queen. That's still lost. So the ?? is between a lost position and a faster loss.",
+    "variations": [
+      {
+        "line": [
+          {"san": "Ra8", "comment": "behind the b-pawn, ready to check from b4"},
+          {"san": "b5"},
+          {"san": "Ra4"},
+          {"san": "c8=Q"},
+          {"san": "Rb4+"},
+          {"san": "Ka3"},
+          {"san": "Re4", "comment": "the rook survives a few moves longer"}
+        ],
+        "comment": "+9.4: queen against rook and pawns, winning for White."
+      }
+    ]
+  }
+]

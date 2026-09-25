@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PGN Analyzer — viewer</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>♞</text></svg>">
+<style>
+  :root {
+    --bg: #161512;
+    --panel: #262421;
+    --panel2: #302e2c;
+    --text: #bababa;
+    --text-dim: #787672;
+    --accent: #3692e7;
+    --light-sq: #f0d9b5;
+    --dark-sq: #b58863;
+    --sel: rgba(20, 85, 30, 0.5);
+    --lastmove: rgba(155, 199, 0, 0.41);
+    --good: #22ac38;
+    --brilliant: #168226;
+    --interesting: #ea45d8;
+    --dubious: #e6b400;
+    --mistake: #e69f00;
+    --blunder: #df5353;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text);
+    font: 14px/1.45 "Noto Sans", "Segoe UI", system-ui, sans-serif; height: 100%; }
+  #app { display: flex; gap: 14px; justify-content: center; align-items: flex-start;
+    padding: 12px; max-width: 1200px; margin: 0 auto; }
+
+  /* ---------- left column: eval bar + board + graph + controls ---------- */
+  .left { flex: 0 0 auto; }
+  .board-row { display: flex; gap: 8px; }
+  #evalbar { width: 24px; border-radius: 3px; overflow: hidden; background: #403d39;
+    position: relative; cursor: default; }
+  #evalbar .white-fill { position: absolute; bottom: 0; left: 0; right: 0;
+    background: #eee; transition: height .3s; height: 50%; }
+  #evalbar .zero { position: absolute; top: 50%; left: 0; right: 0; height: 2px;
+    background: #d64f00; opacity: .8; }
+  #evalbar .txt { position: absolute; left: 0; right: 0; text-align: center;
+    font-size: 9px; font-weight: bold; z-index: 2; }
+  #evalbar .txt.w { bottom: 2px; color: #333; }
+  #evalbar .txt.b { top: 2px; color: #ddd; }
+
+  #board-wrap { position: relative; width: var(--bs); height: var(--bs);
+    user-select: none; touch-action: manipulation; }
+  #board { position: absolute; inset: 0; border-radius: 3px; overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,.5); }
+  #board .sq { position: absolute; width: 12.5%; height: 12.5%; }
+  #board .sq.light { background: var(--light-sq); }
+  #board .sq.dark  { background: var(--dark-sq); }
+  #board .sq.lastmove { background-color: var(--lastmove); background-blend-mode: normal; }
+  #board .sq.light.lastmove { background: linear-gradient(var(--lastmove), var(--lastmove)), var(--light-sq); }
+  #board .sq.dark.lastmove  { background: linear-gradient(var(--lastmove), var(--lastmove)), var(--dark-sq); }
+  #board .sq.selected { background: linear-gradient(var(--sel), var(--sel)), var(--light-sq); }
+  #board .sq.dark.selected { background: linear-gradient(var(--sel), var(--sel)), var(--dark-sq); }
+  #board .sq.check { background: radial-gradient(ellipse at center,
+      rgba(255,0,0,.9) 0%, rgba(231,0,0,.55) 35%, rgba(169,0,0,0) 70%); }
+  #board .sq .dest { position: absolute; inset: 34%; border-radius: 50%;
+    background: rgba(20,85,30,.45); pointer-events: none; }
+  #board .sq .dest.capture { inset: 0; background: none; border-radius: 0;
+    background: radial-gradient(transparent 0%, transparent 74%, rgba(20,85,30,.5) 76%); }
+  #board .coord { position: absolute; font-size: 10px; font-weight: 600; opacity: .8;
+    pointer-events: none; }
+  #board .coord.rank { right: 2px; }
+  #board .coord.file { bottom: 1px; left: 3px; }
+  #board .coord.on-light { color: var(--dark-sq); }
+  #board .coord.on-dark { color: var(--light-sq); }
+
+  #pieces { position: absolute; inset: 0; pointer-events: none; }
+  .piece { position: absolute; width: 12.5%; height: 12.5%;
+    background-size: cover; will-change: transform;
+    transition: transform .12s ease-out; z-index: 2; }
+  .piece.dragless { transition: none; }
+
+  #arrows { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+
+  #promo { position: absolute; inset: 0; background: rgba(0,0,0,.5); z-index: 10;
+    display: none; align-items: center; justify-content: center; gap: 8px; }
+  #promo.open { display: flex; }
+  #promo .choice { width: 15%; padding-top: 15%; position: relative;
+    background: #f0d9b5; border-radius: 6px; cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,.6); }
+  #promo .choice:hover { background: #fff; }
+  #promo .choice div { position: absolute; inset: 5%; background-size: cover; }
+
+  #graph-wrap { margin-top: 8px; position: relative; }
+  #graph { display: block; width: 100%; height: 90px; background: var(--panel);
+    border-radius: 3px; cursor: crosshair; }
+  #graph-tip { position: absolute; top: -22px; left: 0; background: #000c;
+    padding: 1px 7px; border-radius: 3px; font-size: 11px; pointer-events: none;
+    display: none; white-space: nowrap; z-index: 5; }
+
+  #controls { display: flex; gap: 6px; margin-top: 8px; align-items: center; }
+  #controls button { flex: 1; background: var(--panel); color: var(--text);
+    border: none; border-radius: 3px; padding: 7px 0; font-size: 15px;
+    cursor: pointer; }
+  #controls button:hover { background: var(--panel2); color: #fff; }
+  #controls button.small { flex: 0 0 auto; padding: 7px 12px; font-size: 12px; }
+
+  /* ---------- right column ---------- */
+  .right { flex: 1 1 420px; min-width: 320px; max-width: 480px; display: flex;
+    flex-direction: column; gap: 10px; max-height: calc(100vh - 24px); }
+  .box { background: var(--panel); border-radius: 4px; }
+
+  #meta { padding: 8px 12px; }
+  #meta .players { font-size: 15px; font-weight: 600; color: #ddd; }
+  #meta .sub { color: var(--text-dim); font-size: 12px; }
+
+  /* engine */
+  #engine-box { padding: 8px 12px; }
+  #engine-head { display: flex; align-items: center; gap: 10px; }
+  #engine-eval { font-size: 20px; font-weight: 700; color: #fff; min-width: 64px; }
+  #engine-meta { flex: 1; color: var(--text-dim); font-size: 11px; line-height: 1.3; }
+  .switch { position: relative; display: inline-block; width: 40px; height: 22px; flex: 0 0 auto; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .switch .knob { position: absolute; inset: 0; background: #555; border-radius: 22px;
+    cursor: pointer; transition: .2s; }
+  .switch .knob:before { content: ""; position: absolute; width: 16px; height: 16px;
+    left: 3px; top: 3px; background: #ddd; border-radius: 50%; transition: .2s; }
+  .switch input:checked + .knob { background: var(--good); }
+  .switch input:checked + .knob:before { transform: translateX(18px); }
+  .switch input:disabled + .knob { opacity: .4; cursor: not-allowed; }
+  #pvs { margin-top: 6px; display: none; }
+  #pvs .pv { display: flex; gap: 8px; padding: 3px 0; border-top: 1px solid #ffffff12;
+    font-size: 12px; cursor: pointer; align-items: baseline; }
+  #pvs .pv:hover { background: #ffffff08; }
+  #pvs .pv .score { font-weight: 700; color: #ddd; min-width: 44px; text-align: right;
+    flex: 0 0 auto; font-size: 12px; }
+  #pvs .pv .line { color: var(--text-dim); overflow: hidden; text-overflow: ellipsis;
+    white-space: nowrap; }
+  #engine-hint { margin-top: 6px; font-size: 11px; color: var(--dubious); display: none; }
+  #engine-actions { margin-top: 6px; display: none; }
+  #engine-actions button { background: var(--panel2); border: none; color: var(--text);
+    border-radius: 3px; padding: 3px 10px; font-size: 11px; cursor: pointer; }
+  #engine-actions button:hover { color: #fff; }
+
+  /* move list */
+  #moves-box { flex: 1; overflow-y: auto; padding: 10px 12px; min-height: 180px; }
+  #moves-box::-webkit-scrollbar { width: 8px; }
+  #moves-box::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
+  .movetext { line-height: 1.9; }
+  .mv { display: inline-block; padding: 0 4px; border-radius: 3px; cursor: pointer;
+    color: #ccc; font-weight: 500; white-space: nowrap; }
+  .mv:hover { background: var(--accent); color: #fff; }
+  .mv.current { background: var(--accent); color: #fff; }
+  .mv .glyph { font-weight: 700; }
+  .mv.nag1 { color: var(--good); }
+  .mv.nag2 { color: var(--mistake); }
+  .mv.nag3 { color: var(--brilliant); }
+  .mv.nag4 { color: var(--blunder); }
+  .mv.nag5 { color: var(--interesting); }
+  .mv.nag6 { color: var(--dubious); }
+  .mvnum { color: var(--text-dim); font-size: 12px; margin-right: 1px; }
+  .cmt { color: #939190; font-style: italic; font-size: 12.5px; }
+  .gamecmt { display: block; color: #939190; font-style: italic; font-size: 12.5px;
+    border-left: 3px solid #555; padding-left: 8px; margin: 4px 0 8px; }
+  .var { display: block; border-left: 2px solid #4a4844; margin: 2px 0 2px calc(10px * var(--d, 1));
+    padding-left: 8px; font-size: 13px; line-height: 1.8; }
+  .var .mv { color: #a8a6a4; font-size: 13px; }
+  .result { font-weight: 700; color: #ddd; margin-left: 6px; }
+
+  #footer-bar { display: flex; gap: 6px; padding: 8px 12px; }
+  #footer-bar button, #footer-bar a { background: var(--panel2); border: none;
+    color: var(--text); border-radius: 3px; padding: 5px 12px; font-size: 12px;
+    cursor: pointer; text-decoration: none; }
+  #footer-bar button:hover, #footer-bar a:hover { color: #fff; }
+  .spacer { flex: 1; }
+
+  /* load dialog */
+  dialog { background: var(--panel); color: var(--text); border: 1px solid #444;
+    border-radius: 6px; max-width: 560px; width: 90vw; }
+  dialog::backdrop { background: rgba(0,0,0,.6); }
+  dialog h3 { margin: 0 0 10px; color: #ddd; }
+  dialog label { display: block; margin: 10px 0 4px; font-size: 12px; color: var(--text-dim); }
+  dialog select, dialog textarea, dialog input[type=file] { width: 100%;
+    background: var(--bg); color: var(--text); border: 1px solid #444;
+    border-radius: 3px; padding: 6px; font-size: 12px; }
+  dialog textarea { height: 140px; font-family: monospace; resize: vertical; }
+  dialog .row { display: flex; gap: 8px; margin-top: 14px; justify-content: flex-end; }
+  dialog .row button { background: var(--panel2); border: none; color: var(--text);
+    border-radius: 3px; padding: 7px 16px; cursor: pointer; }
+  dialog .row button.primary { background: var(--accent); color: #fff; }
+  #load-error { color: var(--blunder); font-size: 12px; margin-top: 8px; }
+
+  @media (max-width: 900px) {
+    #app { flex-direction: column; align-items: center; }
+    .right { max-width: none; width: 100%; max-height: none; }
+    #moves-box { max-height: 45vh; }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="left">
+    <div class="board-row">
+      <div id="evalbar" title="evaluation">
+        <div class="white-fill"></div><div class="zero"></div>
+        <div class="txt w"></div><div class="txt b"></div>
+      </div>
+      <div id="board-wrap">
+        <div id="board"></div>
+        <div id="pieces"></div>
+        <svg id="arrows" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
+        <div id="promo"></div>
+      </div>
+    </div>
+    <div id="graph-wrap">
+      <canvas id="graph"></canvas>
+      <div id="graph-tip"></div>
+    </div>
+    <div id="controls">
+      <button id="btn-first" title="First (Home)">⏮</button>
+      <button id="btn-prev" title="Previous (←)">◀</button>
+      <button id="btn-next" title="Next (→)">▶</button>
+      <button id="btn-last" title="Last (End)">⏭</button>
+      <button id="btn-flip" class="small" title="Flip board (f)">⇅ Flip</button>
+    </div>
+  </div>
+
+  <div class="right">
+    <div id="meta" class="box">
+      <div class="players">—</div>
+      <div class="sub"></div>
+    </div>
+
+    <div id="engine-box" class="box">
+      <div id="engine-head">
+        <label class="switch" title="Toggle local Stockfish">
+          <input type="checkbox" id="engine-toggle"><span class="knob"></span>
+        </label>
+        <div id="engine-eval">—</div>
+        <div id="engine-meta">Local Stockfish (off)</div>
+      </div>
+      <div id="pvs"></div>
+      <div id="engine-actions"><button id="btn-sweep">Compute eval graph (depth 14)</button></div>
+      <div id="engine-hint"></div>
+    </div>
+
+    <div id="moves-box" class="box"><div class="movetext" id="movetext"></div></div>
+
+    <div id="footer-bar" class="box">
+      <button id="btn-load">Load PGN…</button>
+      <span class="spacer"></span>
+      <a id="btn-lichess" href="https://lichess.org/paste" target="_blank" rel="noopener"
+         title="Open this game on lichess">↗ lichess</a>
+    </div>
+  </div>
+</div>
+
+<dialog id="load-dialog">
+  <h3>Load a game</h3>
+  <label>Embedded games</label>
+  <select id="game-select"></select>
+  <label>…or paste a PGN</label>
+  <textarea id="pgn-input" placeholder="[Event &quot;...&quot;]&#10;&#10;1. e4 c5 2. Nf3 ..."></textarea>
+  <label>…or pick files (PGN, plus optional JSONs: sweep for the eval graph,
+    analysis sidecar for cached engine lines)</label>
+  <input type="file" id="file-input" accept=".pgn,.txt,.json" multiple>
+  <div id="load-error"></div>
+  <div class="row">
+    <button id="btn-cancel">Cancel</button>
+    <button id="btn-do-load" class="primary">Load</button>
+  </div>
+</dialog>
+
+<script src="vendor/chess.js"></script>
+<script src="vendor/pieces.js"></script>
+<script src="games.js"></script>
+<script>
+"use strict";
+/* ================================================================
+   PGN Analyzer viewer — a lichess-style analysis board for the
+   annotated PGNs produced by the chess-analysis skill.
+   Board & move tree work from file://; the optional local Stockfish
+   (engine/) needs the page served over HTTP (workers + wasm).
+   ================================================================ */
+
+const START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+const NAG_GLYPH = {1:"!",2:"?",3:"!!",4:"??",5:"!?",6:"?!",7:"□",10:"=",13:"∞",
+                   14:"⩲",15:"⩱",16:"±",17:"∓",18:"+−",19:"−+",22:"⨀",23:"⨀"};
+const GLYPH_NAGS = [4,3,2,6,5,1]; // priority order for coloring
+
+/* ---------------- move tree + PGN parsing ---------------- */
+
+let nodeSeq = 0;
+function makeNode(parent, san, uci, fen, nagsBefore) {
+  return { id: ++nodeSeq, parent, san, uci, fen,
+           ply: parent ? parent.ply + 1 : 0,
+           comment: "", commentBefore: "", nags: [],
+           children: [], mainline: false, evalCp: null, label: "" };
+}
+
+function moveLabel(parentFen) {
+  const parts = parentFen.split(" ");
+  const num = parseInt(parts[5], 10) || 1;
+  return parts[1] === "w" ? num + "." : num + "...";
+}
+
+function tokenizePgn(movetext) {
+  const toks = [];
+  let i = 0;
+  const s = movetext;
+  while (i < s.length) {
+    const c = s[i];
+    if (/\s/.test(c)) { i++; continue; }
+    if (c === "{") {
+      let j = s.indexOf("}", i + 1); if (j < 0) j = s.length;
+      toks.push({ t: "comment", v: s.slice(i + 1, j).trim() }); i = j + 1; continue;
+    }
+    if (c === ";") {
+      let j = s.indexOf("\n", i); if (j < 0) j = s.length;
+      toks.push({ t: "comment", v: s.slice(i + 1, j).trim() }); i = j; continue;
+    }
+    if (c === "(") { toks.push({ t: "(" }); i++; continue; }
+    if (c === ")") { toks.push({ t: ")" }); i++; continue; }
+    if (c === "$") {
+      let j = i + 1; while (j < s.length && /\d/.test(s[j])) j++;
+      toks.push({ t: "nag", v: parseInt(s.slice(i + 1, j), 10) }); i = j; continue;
+    }
+    let j = i; while (j < s.length && !/[\s(){;]/.test(s[j])) j++;
+    let w = s.slice(i, j); i = j;
+    if (/^(1-0|0-1|1\/2-1\/2|\*)$/.test(w)) { toks.push({ t: "result", v: w }); continue; }
+    w = w.replace(/^\d+\.*/, "");           // "12.", "12...", "12.Nf3"
+    if (!w) continue;
+    let nag = null;
+    const suf = w.match(/[!?]+$/);
+    if (suf) {
+      nag = { "!": 1, "?": 2, "!!": 3, "??": 4, "!?": 5, "?!": 6 }[suf[0]] || null;
+      w = w.slice(0, -suf[0].length);
+    }
+    w = w.replace(/0-0-0/g, "O-O-O").replace(/0-0/g, "O-O");
+    if (w) toks.push({ t: "san", v: w, nag });
+  }
+  return toks;
+}
+
+function parsePgn(text) {
+  // headers
+  const headers = {};
+  let movetext = "";
+  const lines = text.split("\n");
+  let inHeaders = true;
+  for (const line of lines) {
+    const m = inHeaders && line.match(/^\s*\[(\w+)\s+"(.*)"\]\s*$/);
+    if (m) { headers[m[1]] = m[2]; continue; }
+    if (line.trim() !== "") inHeaders = false;
+    if (!inHeaders) movetext += line + "\n";
+  }
+  const startFen = headers.FEN || START_FEN;
+  const probe = new Chess();
+  if (!probe.load(startFen)) throw new Error("Bad FEN header: " + startFen);
+  const root = makeNode(null, null, null, startFen);
+  const fenParts = startFen.split(" ");
+  root.ply = (parseInt(fenParts[5], 10) - 1) * 2 + (fenParts[1] === "b" ? 1 : 0);
+
+  const toks = tokenizePgn(movetext);
+  let pos = 0, result = headers.Result || "*";
+
+  function parseLine(startNode) {
+    const chess = new Chess(startNode.fen);
+    let cur = startNode;
+    let pending = "";                       // comment waiting for the next move
+    while (pos < toks.length) {
+      const tok = toks[pos];
+      if (tok.t === ")") { pos++; break; }
+      pos++;
+      if (tok.t === "(") {
+        if (!cur.parent) throw new Error("Variation with no move to vary from");
+        parseLine(cur.parent);              // alternative to `cur`
+        continue;
+      }
+      if (tok.t === "comment") {
+        if (cur !== startNode && cur.san) cur.comment += (cur.comment ? " " : "") + tok.v;
+        else pending += (pending ? " " : "") + tok.v;
+        continue;
+      }
+      if (tok.t === "nag") {
+        if (cur.san) cur.nags.push(tok.v);
+        continue;
+      }
+      if (tok.t === "result") { result = tok.v; continue; }
+      if (tok.t === "san") {
+        chess.load(cur.fen);
+        const mv = chess.move(tok.v, { sloppy: true });
+        if (!mv) throw new Error("Illegal or unparseable move: " + tok.v +
+                                 " (after " + (cur.san || "start") + ")");
+        const node = makeNode(cur, mv.san, mv.from + mv.to + (mv.promotion || ""), chess.fen());
+        node.label = moveLabel(cur.fen);
+        node.commentBefore = pending; pending = "";
+        if (tok.nag) node.nags.push(tok.nag);
+        cur.children.push(node);
+        cur = node;
+      }
+    }
+    if (pending && cur.san) cur.comment += (cur.comment ? " " : "") + pending;
+    else if (pending) root.comment += (root.comment ? " " : "") + pending;
+  }
+  parseLine(root);
+
+  // mark mainline & index it
+  const mainline = [];
+  for (let n = root; n; n = n.children[0]) { n.mainline = true; if (n.san) mainline.push(n); }
+  return { headers, root, mainline, result };
+}
+
+function cleanComment(c) { return c.replace(/\[%[^\]]*\]/g, "").replace(/\s+/g, " ").trim(); }
+
+/* ---------------- application state ---------------- */
+
+const state = {
+  game: null,        // { headers, root, mainline, result }
+  node: null,        // current node
+  orientation: "w",
+  sweep: null,       // [{ply, cp, mate?}] white-POV eval after each mainline ply
+  analysis: null,    // Map fen4 -> {depth, engine, lines:[{cpWhite,mateWhite,pv,restricted}]}
+  pgnText: "",
+};
+
+function gotoNode(n, opts) {
+  state.node = n;
+  renderBoard(n.fen, n.uci, opts);
+  renderMoveHighlight();
+  renderGraphCursor();
+  updateEvalBar();
+  renderCachedLines();
+  engine.onPosition(n.fen);
+}
+
+function mainlineAncestor(n) { while (n && !n.mainline) n = n.parent; return n; }
+
+/* ---------------- board rendering ---------------- */
+
+const boardEl = document.getElementById("board");
+const piecesEl = document.getElementById("pieces");
+const arrowsEl = document.getElementById("arrows");
+const FILES = "abcdefgh";
+
+function sqCoords(sq) {                       // -> {x,y} in 0..7 screen space
+  const f = FILES.indexOf(sq[0]), r = parseInt(sq[1], 10) - 1;
+  return state.orientation === "w" ? { x: f, y: 7 - r } : { x: 7 - f, y: r };
+}
+function coordsSq(x, y) {
+  const f = state.orientation === "w" ? x : 7 - x;
+  const r = state.orientation === "w" ? 7 - y : y;
+  return FILES[f] + (r + 1);
+}
+
+function buildSquares() {
+  boardEl.innerHTML = "";
+  for (let y = 0; y < 8; y++) for (let x = 0; x < 8; x++) {
+    const sq = coordsSq(x, y);
+    const f = FILES.indexOf(sq[0]), r = parseInt(sq[1], 10) - 1;
+    const div = document.createElement("div");
+    div.className = "sq " + ((f + r) % 2 ? "light" : "dark");
+    div.dataset.square = sq;
+    div.style.left = x * 12.5 + "%";
+    div.style.top = y * 12.5 + "%";
+    div.addEventListener("click", () => onSquareClick(sq));
+    boardEl.appendChild(div);
+    if (x === 7) {
+      const lbl = document.createElement("span");
+      lbl.className = "coord rank " + ((f + r) % 2 ? "on-light" : "on-dark");
+      lbl.textContent = sq[1];
+      div.appendChild(lbl);
+    }
+    if (y === 7) {
+      const lbl = document.createElement("span");
+      lbl.className = "coord file " + ((f + r) % 2 ? "on-light" : "on-dark");
+      lbl.textContent = sq[0];
+      div.appendChild(lbl);
+    }
+  }
+}
+
+function fenPlacement(fen) {                  // -> Map square -> "wK"...
+  const map = new Map();
+  const rows = fen.split(" ")[0].split("/");
+  for (let r = 0; r < 8; r++) {
+    let f = 0;
+    for (const ch of rows[r]) {
+      if (/\d/.test(ch)) { f += +ch; continue; }
+      const color = ch === ch.toUpperCase() ? "w" : "b";
+      map.set(FILES[f] + (8 - r), color + ch.toUpperCase());
+      f++;
+    }
+  }
+  return map;
+}
+
+let pieceEls = [];                            // {el, sq, key}
+function placePiece(entry, animate) {
+  const { x, y } = sqCoords(entry.sq);
+  if (!animate) entry.el.classList.add("dragless");
+  entry.el.style.transform = `translate(${x * 100}%, ${y * 100}%)`;
+  if (!animate) requestAnimationFrame(() => entry.el.classList.remove("dragless"));
+}
+
+function renderBoard(fen, lastUci, opts) {
+  const animate = !(opts && opts.noAnim);
+  const want = fenPlacement(fen);
+  const keep = [], free = [];
+  for (const p of pieceEls) {
+    if (want.get(p.sq) === p.key) { keep.push(p); want.delete(p.sq); }
+    else free.push(p);
+  }
+  // move same-kind pieces to their new squares (closest first)
+  for (const [sq, key] of [...want]) {
+    let best = null, bestD = 99;
+    for (const p of free) {
+      if (p.key !== key || p.used) continue;
+      const a = sqCoords(p.sq), b = sqCoords(sq);
+      const d = Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
+      if (d < bestD) { bestD = d; best = p; }
+    }
+    if (best) {
+      best.used = true; best.sq = sq; placePiece(best, animate); keep.push(best);
+      want.delete(sq);
+    }
+  }
+  for (const p of free) if (!p.used) p.el.remove();
+  for (const [sq, key] of want) {
+    const el = document.createElement("div");
+    el.className = "piece";
+    el.style.backgroundImage = `url("${PIECE_URIS[key]}")`;
+    piecesEl.appendChild(el);
+    const entry = { el, sq, key };
+    placePiece(entry, false);
+    keep.push(entry);
+  }
+  for (const p of keep) p.used = false;
+  pieceEls = keep;
+
+  // square decorations
+  clearSelection();
+  for (const el of boardEl.querySelectorAll(".sq.lastmove, .sq.check"))
+    el.classList.remove("lastmove", "check");
+  if (lastUci) {
+    for (const sq of [lastUci.slice(0, 2), lastUci.slice(2, 4)]) {
+      const el = boardEl.querySelector(`[data-square="${sq}"]`);
+      if (el) el.classList.add("lastmove");
+    }
+  }
+  const chess = new Chess(fen);
+  if (chess.in_check()) {
+    const turn = chess.turn();
+    for (const [sq, key] of fenPlacement(fen))
+      if (key === turn + "K") {
+        const el = boardEl.querySelector(`[data-square="${sq}"]`);
+        if (el) el.classList.add("check");
+      }
+  }
+  drawEngineArrows();
+}
+
+function refreshOrientation() {
+  buildSquares();
+  for (const p of pieceEls) placePiece(p, false);
+  renderBoard(state.node.fen, state.node.uci, { noAnim: true });
+}
+
+/* ---- click-to-move ---- */
+let selectedSq = null;
+function clearSelection() {
+  selectedSq = null;
+  for (const el of boardEl.querySelectorAll(".sq.selected")) el.classList.remove("selected");
+  for (const el of boardEl.querySelectorAll(".dest")) el.remove();
+}
+
+function onSquareClick(sq) {
+  const chess = new Chess(state.node.fen);
+  if (selectedSq) {
+    const moves = chess.moves({ square: selectedSq, verbose: true });
+    const candidates = moves.filter(m => m.to === sq);
+    if (candidates.length) {
+      if (candidates.some(m => m.promotion)) { openPromo(selectedSq, sq); return; }
+      playUserMove(selectedSq, sq, null);
+      return;
+    }
+    clearSelection();
+  }
+  const piece = chess.get(sq);
+  if (piece && piece.color === chess.turn()) {
+    clearSelection();
+    selectedSq = sq;
+    boardEl.querySelector(`[data-square="${sq}"]`).classList.add("selected");
+    for (const m of chess.moves({ square: sq, verbose: true })) {
+      const el = boardEl.querySelector(`[data-square="${m.to}"]`);
+      if (!el) continue;
+      const dot = document.createElement("div");
+      dot.className = "dest" + (chess.get(m.to) ? " capture" : "");
+      el.appendChild(dot);
+    }
+  }
+}
+
+function playUserMove(from, to, promotion) {
+  clearSelection();
+  const chess = new Chess(state.node.fen);
+  const mv = chess.move({ from, to, promotion: promotion || undefined });
+  if (!mv) return;
+  const uci = from + to + (mv.promotion || "");
+  const existing = state.node.children.find(c => c.uci === uci);
+  if (existing) { gotoNode(existing); return; }
+  const node = makeNode(state.node, mv.san, uci, chess.fen());
+  node.label = moveLabel(state.node.fen);
+  node.mainline = false;
+  state.node.children.push(node);
+  renderMoveList();
+  gotoNode(node);
+}
+
+/* ---- promotion chooser ---- */
+const promoEl = document.getElementById("promo");
+function openPromo(from, to) {
+  promoEl.innerHTML = "";
+  const color = new Chess(state.node.fen).turn();
+  for (const p of ["Q", "R", "B", "N"]) {
+    const c = document.createElement("div");
+    c.className = "choice";
+    const img = document.createElement("div");
+    img.style.backgroundImage = `url("${PIECE_URIS[color + p]}")`;
+    c.appendChild(img);
+    c.addEventListener("click", () => {
+      promoEl.classList.remove("open");
+      playUserMove(from, to, p.toLowerCase());
+    });
+    promoEl.appendChild(c);
+  }
+  promoEl.classList.add("open");
+}
+promoEl.addEventListener("click", e => { if (e.target === promoEl) promoEl.classList.remove("open"); });
+
+/* ---- best-move arrows (live engine, or cached analysis lines) ---- */
+function drawEngineArrows() {
+  arrowsEl.innerHTML = "";
+  const lines = displayedLines();
+  lines.slice(0, 2).forEach((line, i) => {
+    if (!line || !line.pv.length) return;
+    const uci = line.pv[0];
+    const a = sqCoords(uci.slice(0, 2)), b = sqCoords(uci.slice(2, 4));
+    const x1 = a.x * 12.5 + 6.25, y1 = a.y * 12.5 + 6.25;
+    const x2 = b.x * 12.5 + 6.25, y2 = b.y * 12.5 + 6.25;
+    const dx = x2 - x1, dy = y2 - y1, len = Math.hypot(dx, dy) || 1;
+    const ux = dx / len, uy = dy / len;
+    const head = 4.2, wing = 2.6, shaft = i === 0 ? 2.4 : 1.6;
+    const ex = x2 - ux * head, ey = y2 - uy * head;
+    const color = i === 0 ? "rgba(21,120,27,.85)" : "rgba(21,120,27,.45)";
+    const mk = (tag, attrs) => {
+      const el = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const k in attrs) el.setAttribute(k, attrs[k]);
+      arrowsEl.appendChild(el);
+    };
+    mk("line", { x1, y1, x2: ex, y2: ey, stroke: color, "stroke-width": shaft,
+                 "stroke-linecap": "round" });
+    mk("polygon", { points: `${x2},${y2} ${ex - uy * wing},${ey + ux * wing} ${ex + uy * wing},${ey - ux * wing}`,
+                    fill: color });
+  });
+}
+
+/* ---------------- move list ---------------- */
+
+const movetextEl = document.getElementById("movetext");
+const moveEls = new Map();                    // node.id -> element
+
+function glyphClass(nags) {
+  for (const n of GLYPH_NAGS) if (nags.includes(n)) return "nag" + n;
+  return "";
+}
+
+function appendMoveSpan(container, node, forceNumber) {
+  if (node.commentBefore) {
+    const c = document.createElement("span");
+    c.className = "cmt";
+    c.textContent = " " + cleanComment(node.commentBefore) + " ";
+    container.appendChild(c);
+  }
+  const span = document.createElement("span");
+  span.className = ("mv " + glyphClass(node.nags)).trim();
+  const isWhite = node.label.endsWith("...") === false;
+  if (isWhite || forceNumber) {
+    const num = document.createElement("span");
+    num.className = "mvnum";
+    num.textContent = node.label + " ";
+    span.appendChild(num);
+  }
+  span.appendChild(document.createTextNode(node.san));
+  const glyphs = node.nags.map(n => NAG_GLYPH[n]).filter(Boolean).join("");
+  if (glyphs) {
+    const g = document.createElement("span");
+    g.className = "glyph";
+    g.textContent = glyphs;
+    span.appendChild(g);
+  }
+  span.addEventListener("click", () => gotoNode(span._node));
+  span._node = node;
+  container.appendChild(span);
+  container.appendChild(document.createTextNode(" "));
+  moveEls.set(node.id, span);
+}
+
+function renderLine(container, firstNode, depth) {
+  let node = firstNode;
+  let forceNumber = true;                     // number the first move of every line
+  while (node) {
+    appendMoveSpan(container, node, forceNumber);
+    forceNumber = false;
+    let interrupted = false;
+    if (node.comment) {
+      const c = document.createElement("span");
+      c.className = "cmt";
+      c.textContent = cleanComment(node.comment) + " ";
+      container.appendChild(c);
+      interrupted = true;
+    }
+    // alternatives to THIS move are its siblings (parent.children[1..]);
+    // render them right after it, PGN-style — but only from the line's own
+    // trunk, never for the first move of a variation (which IS a sibling).
+    const sibs = node.parent ? node.parent.children : [];
+    if (sibs[0] === node && sibs.length > 1) {
+      for (const alt of sibs.slice(1)) {
+        const varDiv = document.createElement("div");
+        varDiv.className = "var";
+        varDiv.style.setProperty("--d", Math.min(depth + 1, 4));
+        varDiv.appendChild(document.createTextNode("( "));
+        renderLine(varDiv, alt, depth + 1);
+        varDiv.appendChild(document.createTextNode(" )"));
+        container.appendChild(varDiv);
+        interrupted = true;
+      }
+    }
+    if (interrupted && node.children[0]) forceNumber = true;
+    node = node.children[0];
+  }
+}
+
+function renderMoveList() {
+  movetextEl.innerHTML = "";
+  moveEls.clear();
+  const g = state.game;
+  if (!g) return;
+  const first = g.root.children[0];
+  if (g.root.comment || (first && first.commentBefore)) {
+    const c = document.createElement("span");
+    c.className = "gamecmt";
+    c.textContent = cleanComment((g.root.comment + " " + (first ? first.commentBefore : "")).trim());
+    movetextEl.appendChild(c);
+    if (first) first._skipCommentBefore = true;
+  }
+  if (first) {
+    if (first._skipCommentBefore) { const s = first.commentBefore; first.commentBefore = "";
+      renderLineRoot(); first.commentBefore = s; }
+    else renderLineRoot();
+  }
+  function renderLineRoot() {
+    // root alternatives (children[1..] of root) rendered after first move's span
+    renderLine(movetextEl, first, 0);
+  }
+  const res = document.createElement("span");
+  res.className = "result";
+  res.textContent = g.result;
+  movetextEl.appendChild(res);
+  renderMoveHighlight();
+}
+
+function renderMoveHighlight() {
+  for (const el of movetextEl.querySelectorAll(".mv.current")) el.classList.remove("current");
+  const el = moveEls.get(state.node.id);
+  if (el) {
+    el.classList.add("current");
+    el.scrollIntoView({ block: "nearest" });
+  }
+}
+
+/* ---------------- eval bar + graph ---------------- */
+
+function winningChance(cp) {                  // lichess formula, white POV
+  return 2 / (1 + Math.exp(-0.00368208 * Math.max(-1500, Math.min(1500, cp)))) - 1;
+}
+function fmtScore(cp, mate) {
+  if (mate === 0) return "#";
+  if (mate != null) return (mate > 0 ? "#" : "#−") + Math.abs(mate);
+  const v = cp / 100;
+  return (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(Math.abs(v) >= 10 ? 0 : 1);
+}
+
+const evalbarFill = document.querySelector("#evalbar .white-fill");
+const evalbarZero = document.querySelector("#evalbar .zero");
+const evalTxtW = document.querySelector("#evalbar .txt.w");
+const evalTxtB = document.querySelector("#evalbar .txt.b");
+
+function currentKnownEval() {                 // -> {cp, mate} or null (white POV)
+  if (engine.on && engine.lines[0] && engine.lines[0].fen === state.node.fen)
+    return { cp: engine.lines[0].cpWhite, mate: engine.lines[0].mateWhite };
+  const anc = mainlineAncestor(state.node);
+  if (anc === state.node && anc && state.sweep) {
+    const row = state.sweep[anc.san ? mainlineIndex(anc) : -1];
+    if (row) return { cp: row.cp, mate: row.mate != null ? row.mate : null };
+  }
+  const entry = !engine.on && cachedFor(state.node.fen);
+  if (entry) {
+    const top = entry.lines.find(l => !l.restricted) || entry.lines[0];
+    return { cp: top.cpWhite, mate: top.mateWhite };
+  }
+  if (anc && state.sweep) {                   // off-mainline: nearest known eval
+    const row = state.sweep[anc.san ? mainlineIndex(anc) : -1];
+    if (row) return { cp: row.cp, mate: row.mate != null ? row.mate : null };
+  }
+  return null;
+}
+let mainlineIdxCache = null;
+function mainlineIndex(node) {
+  if (!mainlineIdxCache) {
+    mainlineIdxCache = new Map();
+    state.game.mainline.forEach((n, i) => mainlineIdxCache.set(n.id, i));
+  }
+  const i = mainlineIdxCache.get(node.id);
+  return i === undefined ? -1 : i;
+}
+
+function updateEvalBar() {
+  const e = currentKnownEval();
+  if (!e) {
+    evalTxtW.textContent = ""; evalTxtB.textContent = "";
+    evalbarFill.style.height = "50%"; evalbarZero.style.top = "50%";
+    return;
+  }
+  let wc;
+  const mateForWhite = e.mate != null && (e.mate !== 0 ? e.mate : e.cp) > 0;
+  if (e.mate != null) wc = mateForWhite ? 1 : -1;
+  else wc = winningChance(e.cp);
+  const pct = Math.max(2, Math.min(98, 50 + 50 * wc));
+  evalbarFill.style.height = (e.mate != null ? (mateForWhite ? 100 : 0) : pct) + "%";
+  const txt = fmtScore(e.cp, e.mate);
+  const whiteAhead = e.mate != null ? mateForWhite : e.cp >= 0;
+  evalTxtW.textContent = whiteAhead ? txt : "";
+  evalTxtB.textContent = whiteAhead ? "" : txt;
+}
+
+const graphEl = document.getElementById("graph");
+const graphTip = document.getElementById("graph-tip");
+const gctx = graphEl.getContext("2d");
+
+function graphData() {                        // per mainline node: wc or null
+  if (!state.game) return [];
+  return state.game.mainline.map((n, i) => {
+    const row = state.sweep && state.sweep[i];
+    if (!row) return null;
+    if (row.mate != null) return (row.mate !== 0 ? row.mate : row.cp) > 0 ? 1 : -1;
+    return winningChance(row.cp);
+  });
+}
+
+function renderGraph() {
+  const W = graphEl.clientWidth, H = graphEl.clientHeight;
+  const dpr = window.devicePixelRatio || 1;
+  graphEl.width = W * dpr; graphEl.height = H * dpr;
+  gctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  gctx.clearRect(0, 0, W, H);
+  const data = graphData();
+  const n = data.length;
+  gctx.strokeStyle = "#57544f";
+  gctx.beginPath(); gctx.moveTo(0, H / 2); gctx.lineTo(W, H / 2); gctx.stroke();
+  if (!n || data.every(d => d === null)) {
+    gctx.fillStyle = "#787672"; gctx.font = "11px sans-serif";
+    gctx.textAlign = "center";
+    gctx.fillText(state.game && state.game.mainline.length
+      ? "no eval data — enable the engine and press “Compute eval graph”"
+      : "no game", W / 2, H / 2 - 6);
+    return;
+  }
+  const x = i => n < 2 ? W / 2 : (i / (n - 1)) * (W - 8) + 4;
+  const y = wc => H / 2 - wc * (H / 2 - 5);
+  // filled area = white advantage look (lichess acpl chart)
+  gctx.beginPath();
+  gctx.moveTo(x(0), H);
+  let prev = 0;
+  data.forEach((wc, i) => { if (wc === null) wc = prev; prev = wc; gctx.lineTo(x(i), y(wc)); });
+  gctx.lineTo(x(n - 1), H); gctx.closePath();
+  gctx.fillStyle = "rgba(255,255,255,.75)";
+  gctx.fill();
+  // mistake markers from PGN glyphs
+  state.game.mainline.forEach((node, i) => {
+    const cls = glyphClass(node.nags);
+    if (!cls || data[i] === null) return;
+    const colors = { nag4: "#df5353", nag2: "#e69f00", nag6: "#e6b400",
+                     nag5: "#ea45d8", nag1: "#22ac38", nag3: "#168226" };
+    gctx.beginPath();
+    gctx.arc(x(i), y(data[i]), 3.2, 0, Math.PI * 2);
+    gctx.fillStyle = colors[cls]; gctx.fill();
+    gctx.strokeStyle = "#161512"; gctx.lineWidth = 1; gctx.stroke();
+  });
+  renderGraphCursor(true);
+}
+
+function renderGraphCursor(alreadyDrawn) {
+  if (!alreadyDrawn) { renderGraph(); return; }
+  const anc = mainlineAncestor(state.node);
+  if (!anc || !anc.san || !state.game) return;
+  const i = mainlineIndex(anc);
+  if (i < 0) return;
+  const W = graphEl.clientWidth, H = graphEl.clientHeight;
+  const n = state.game.mainline.length;
+  const x = n < 2 ? W / 2 : (i / (n - 1)) * (W - 8) + 4;
+  gctx.strokeStyle = "#3692e7"; gctx.lineWidth = 2;
+  gctx.beginPath(); gctx.moveTo(x, 0); gctx.lineTo(x, H); gctx.stroke();
+}
+
+function graphIndexAt(evt) {
+  const rect = graphEl.getBoundingClientRect();
+  const n = state.game ? state.game.mainline.length : 0;
+  if (!n) return -1;
+  const rel = (evt.clientX - rect.left - 4) / (rect.width - 8);
+  return Math.max(0, Math.min(n - 1, Math.round(rel * (n - 1))));
+}
+graphEl.addEventListener("click", evt => {
+  const i = graphIndexAt(evt);
+  if (i >= 0) gotoNode(state.game.mainline[i]);
+});
+graphEl.addEventListener("mousemove", evt => {
+  const i = graphIndexAt(evt);
+  if (i < 0) { graphTip.style.display = "none"; return; }
+  const node = state.game.mainline[i];
+  const row = state.sweep && state.sweep[i];
+  graphTip.textContent = node.label + " " + node.san +
+    (row ? "  " + fmtScore(row.cp, row.mate) : "");
+  graphTip.style.display = "block";
+  const rect = graphEl.getBoundingClientRect();
+  graphTip.style.left = Math.min(evt.clientX - rect.left, rect.width - 90) + "px";
+});
+graphEl.addEventListener("mouseleave", () => graphTip.style.display = "none");
+
+/* ---------------- local Stockfish (optional) ---------------- */
+
+const engine = {
+  on: false, worker: null, ready: false,
+  searching: false, stopping: false, pendingFen: null, curFen: null,
+  lines: [],                                  // per multipv: {fen, depth, cpWhite, mateWhite, pv[]}
+  sweepJob: null,
+
+  toggle(on) {
+    if (on) this.start(); else this.shutdown();
+  },
+  start() {
+    if (this.worker) { this.on = true; this.onPosition(state.node.fen); return; }
+    if (location.protocol === "file:") {
+      hint("Browsers block workers/wasm on file:// — serve this folder over HTTP, e.g. " +
+           "“python3 -m http.server” in this page's folder, then open http://localhost:8000");
+      document.getElementById("engine-toggle").checked = false;
+      return;
+    }
+    hint("");
+    setEngineMeta("loading Stockfish…");
+    try {
+      this.worker = new Worker("engine/stockfish-17.1-lite-single.js");
+    } catch (e) {
+      hint("Could not start the engine worker: " + e.message);
+      document.getElementById("engine-toggle").checked = false;
+      return;
+    }
+    this.worker.onerror = e => {
+      hint("Engine failed to load (" + (e.message || "worker error") +
+           "). Check that engine/stockfish-17.1-lite-single.{js,wasm} exist and the page is served over HTTP.");
+      this.shutdown();
+      document.getElementById("engine-toggle").checked = false;
+    };
+    this.worker.onmessage = e => this.onMessage(String(e.data));
+    this.on = true;
+    this.send("uci");
+  },
+  shutdown() {
+    this.on = false; this.ready = false; this.searching = false; this.stopping = false;
+    this.pendingFen = null; this.lines = []; this.sweepJob = null;
+    if (this.worker) { this.worker.terminate(); this.worker = null; }
+    document.getElementById("engine-actions").style.display = "none";
+    renderCachedLines();
+    drawEngineArrows();
+    updateEvalBar();
+  },
+  send(cmd) { if (this.worker) this.worker.postMessage(cmd); },
+
+  onMessage(line) {
+    if (line === "uciok") {
+      this.send("setoption name MultiPV value 3");
+      this.send("setoption name Hash value 64");
+      this.send("isready");
+      return;
+    }
+    if (line === "readyok") {
+      this.ready = true;
+      document.getElementById("engine-actions").style.display = "block";
+      this.onPosition(state.node.fen);
+      return;
+    }
+    if (line.startsWith("bestmove")) {
+      this.searching = false; this.stopping = false;
+      if (this.sweepJob) { this.sweepJob.onBestmove(); return; }
+      if (this.pendingFen) { const f = this.pendingFen; this.pendingFen = null; this.beginSearch(f); }
+      return;
+    }
+    if (line.startsWith("info ") && line.includes(" pv ")) {
+      if (this.sweepJob) { this.sweepJob.onInfo(line); return; }
+      this.parseInfo(line);
+    }
+  },
+
+  onPosition(fen) {
+    if (!this.on || !this.ready || this.sweepJob) return;
+    if (fen === this.curFen && this.searching) return;
+    if (this.searching) { this.pendingFen = fen; if (!this.stopping) { this.stopping = true; this.send("stop"); } }
+    else this.beginSearch(fen);
+  },
+  beginSearch(fen) {
+    this.curFen = fen;
+    this.lines = [];
+    const chess = new Chess(fen);
+    if (chess.game_over()) {
+      setEngineMeta(chess.in_checkmate() ? "checkmate" : "game over");
+      document.getElementById("engine-eval").textContent = chess.in_checkmate() ? "#" : "½";
+      document.getElementById("pvs").style.display = "none";
+      drawEngineArrows();
+      return;
+    }
+    this.send("position fen " + fen);
+    this.send("go depth 32");
+    this.searching = true;
+  },
+
+  parseInfo(line) {
+    const m = line.match(/depth (\d+).*?multipv (\d+).*?score (cp|mate) (-?\d+).*? pv (.+)$/);
+    if (!m) return;
+    const [, depth, multipv, kind, val, pv] = m;
+    const stmBlack = this.curFen.split(" ")[1] === "b";
+    const sign = stmBlack ? -1 : 1;
+    const entry = {
+      fen: this.curFen, depth: +depth,
+      cpWhite: kind === "cp" ? sign * +val : (sign * +val > 0 ? 10000 : -10000),
+      mateWhite: kind === "mate" ? sign * +val : null,
+      pv: pv.trim().split(/\s+/),
+    };
+    this.lines[+multipv - 1] = entry;
+    if (+multipv === 1) {
+      document.getElementById("engine-eval").textContent =
+        fmtScore(entry.cpWhite, entry.mateWhite);
+      setEngineMeta("Stockfish 17.1 lite · depth " + entry.depth);
+      updateEvalBar();
+      drawEngineArrows();
+    }
+    this.renderPvs();
+  },
+
+  renderPvs() {
+    renderLinesPanel(this.lines.filter(l => l && l.fen === this.curFen));
+  },
+
+  /* sequential mainline sweep to build the eval graph client-side */
+  computeSweep() {
+    if (!this.on || !this.ready || this.sweepJob || !state.game) return;
+    const nodes = state.game.mainline;
+    if (!nodes.length) return;
+    if (this.searching) { this.send("stop"); }
+    const job = {
+      i: -1, rows: [], last: null, gen: state.game,
+      next: () => {
+        job.i++;
+        if (job.i >= nodes.length || state.game !== job.gen || !this.on) {
+          this.sweepJob = null;
+          if (state.game === job.gen && job.rows.length) {
+            state.sweep = job.rows; renderGraph(); updateEvalBar();
+          }
+          setEngineMeta("sweep done");
+          this.searching = false;
+          this.send("setoption name MultiPV value 3");
+          this.onPosition(state.node.fen);
+          return;
+        }
+        setEngineMeta(`sweeping… ${job.i + 1}/${nodes.length}`);
+        const fen = nodes[job.i].fen;
+        const chess = new Chess(fen);
+        if (chess.game_over()) {          // engine emits no pv here; score it directly
+          job.rows[job.i] = chess.in_checkmate()
+            ? { cp: chess.turn() === "w" ? -10000 : 10000, mate: 0 }
+            : { cp: 0, mate: null };
+          job.next();
+          return;
+        }
+        job.last = null;
+        this.send("setoption name MultiPV value 1");
+        this.send("position fen " + fen);
+        this.send("go depth 14");
+        this.searching = true;
+      },
+      onInfo: line => {
+        const m = line.match(/score (cp|mate) (-?\d+)/);
+        if (!m) return;
+        const stmBlack = nodes[job.i].fen.split(" ")[1] === "b";
+        const sign = stmBlack ? -1 : 1;
+        job.last = m[1] === "cp"
+          ? { cp: sign * +m[2], mate: null }
+          : { cp: sign * +m[2] > 0 ? 10000 : -10000, mate: sign * +m[2] };
+      },
+      onBestmove: () => {
+        if (job.i >= 0) job.rows[job.i] = job.last || { cp: 0, mate: null };
+        job.next();
+      },
+    };
+    this.sweepJob = job;
+    // wait for any in-flight search to stop before starting
+    if (this.searching) {
+      const iv = setInterval(() => {
+        if (!this.searching) { clearInterval(iv); job.next(); }
+      }, 50);
+      setTimeout(() => clearInterval(iv), 5000);
+    } else job.next();
+    // restore MultiPV when done is handled by onPosition→beginSearch defaults
+    this._restoreMultiPv = () => this.send("setoption name MultiPV value 3");
+  },
+};
+
+function setEngineMeta(t) { document.getElementById("engine-meta").textContent = t; }
+function hint(t) {
+  const el = document.getElementById("engine-hint");
+  el.textContent = t;
+  el.style.display = t ? "block" : "none";
+}
+
+function pvToSan(fen, uciMoves, maxN) {
+  const chess = new Chess(fen);
+  const out = [];
+  for (const u of uciMoves.slice(0, maxN)) {
+    const label = moveLabel(chess.fen());
+    const mv = chess.move({ from: u.slice(0, 2), to: u.slice(2, 4), promotion: u[4] || undefined });
+    if (!mv) break;
+    out.push((label.endsWith("...") && out.length ? "" : label + " ") + mv.san);
+  }
+  return out.join(" ");
+}
+
+/* ---------------- cached engine lines (analysis sidecar) ----------------
+   When the local engine isn't running, the panel falls back to Stockfish
+   lines discovered during the post-mortem: an optional sidecar JSON
+   ({positions: {"<fen>": {depth, lines: [{cp, mate, pv:[uci…]}]}}}, as
+   written by the chess-analysis skill's query.py --log), plus best/alt
+   moves synthesized from the sweep rows. Evals are white-POV. */
+
+function fen4(fen) { return fen.split(" ").slice(0, 4).join(" "); }
+
+function normLine(raw, fen) {
+  // -> {cpWhite, mateWhite, pv:[uci], restricted} or null
+  let pv = raw.pv;
+  if (!pv && raw.sanpv) {                     // SAN pv: replay to uci
+    const chess = new Chess(fen); pv = [];
+    for (const san of raw.sanpv) {
+      const mv = chess.move(san, { sloppy: true });
+      if (!mv) break;
+      pv.push(mv.from + mv.to + (mv.promotion || ""));
+    }
+  }
+  if (!pv || !pv.length) return null;
+  let cp = raw.cp, mate = raw.mate != null ? raw.mate : null;
+  if (typeof cp !== "number") return null;
+  if (mate == null && Math.abs(cp) >= 9000)
+    mate = Math.sign(cp) * Math.max(1, 10000 - Math.abs(cp));
+  return { cpWhite: cp, mateWhite: mate, pv, restricted: !!raw.restricted };
+}
+
+function buildAnalysisCache(game, sweepRows, sidecar) {
+  const cache = new Map();
+  // 1) synthesized from the sweep: engine best (and the played/alt move)
+  //    for the position *before* each mainline ply
+  if (Array.isArray(sweepRows)) {
+    sweepRows.forEach((row, i) => {
+      const fenBefore = i === 0 ? game.root.fen : sweepRows[i - 1].fen_after;
+      if (!fenBefore) return;
+      const lines = [];
+      const add = (san, cp) => {
+        if (!san || typeof cp !== "number") return;
+        const line = normLine({ cp, sanpv: [san] }, fenBefore);
+        if (line && !lines.some(l => l.pv[0] === line.pv[0])) lines.push(line);
+      };
+      add(row.best_san, row.eval_before_best);
+      add(row.alt_san, row.alt_cp);
+      if (lines.length)
+        cache.set(fen4(fenBefore), { depth: row.depth || null, engine: null,
+                                     lines, source: "sweep" });
+    });
+  }
+  // 2) sidecar overrides/extends (deeper, multi-move PVs)
+  if (sidecar && sidecar.positions) {
+    for (const [key, entry] of Object.entries(sidecar.positions)) {
+      const k = fen4(key);
+      const lines = (entry.lines || []).map(L => normLine(L, key)).filter(Boolean);
+      if (!lines.length) continue;
+      lines.sort((a, b) => (a.restricted - b.restricted));
+      cache.set(k, { depth: entry.depth || null, engine: sidecar.engine || null,
+                     lines, source: "analysis" });
+    }
+  }
+  return cache.size ? cache : null;
+}
+
+function cachedFor(fen) {
+  return state.analysis ? state.analysis.get(fen4(fen)) || null : null;
+}
+
+function displayedLines() {
+  if (engine.on) {
+    if (engine.lines.length && engine.lines[0] && engine.lines[0].fen === state.node.fen)
+      return engine.lines.filter(Boolean);
+    return [];
+  }
+  const entry = cachedFor(state.node.fen);
+  return entry ? entry.lines : [];
+}
+
+function renderLinesPanel(lines) {
+  const box = document.getElementById("pvs");
+  if (!lines.length) { box.style.display = "none"; box.innerHTML = ""; return; }
+  box.style.display = "block";
+  box.innerHTML = "";
+  const fen = state.node.fen;
+  for (const lineData of lines) {
+    const div = document.createElement("div");
+    div.className = "pv";
+    if (lineData.restricted) div.style.opacity = ".72";
+    const score = document.createElement("span");
+    score.className = "score";
+    score.textContent = fmtScore(lineData.cpWhite, lineData.mateWhite);
+    const moves = document.createElement("span");
+    moves.className = "line";
+    moves.textContent = pvToSan(fen, lineData.pv, 12);
+    div.appendChild(score); div.appendChild(moves);
+    div.title = (lineData.restricted ? "what-if line (restricted search) — " : "") +
+      "Click to play " + (pvToSan(fen, lineData.pv, 1) || "");
+    div.addEventListener("click", () => {
+      const uci = lineData.pv[0];
+      if (uci) playUserMove(uci.slice(0, 2), uci.slice(2, 4), uci[4] || null);
+    });
+    box.appendChild(div);
+  }
+}
+
+function renderCachedLines() {
+  if (engine.on) return;                      // live engine owns the panel
+  const entry = cachedFor(state.node.fen);
+  const evalEl = document.getElementById("engine-eval");
+  if (!entry) {
+    setEngineMeta("Local Stockfish (off)");
+    evalEl.textContent = "—";
+    renderLinesPanel([]);
+    return;
+  }
+  const top = entry.lines.find(l => !l.restricted) || entry.lines[0];
+  evalEl.textContent = fmtScore(top.cpWhite, top.mateWhite);
+  setEngineMeta((entry.engine || "Stockfish") + " (cached" +
+    (entry.depth ? " · depth " + entry.depth : "") + ")");
+  renderLinesPanel(entry.lines);
+}
+
+/* ---------------- game loading ---------------- */
+
+function sweepFromJson(raw) {
+  // accepts the sweep.py format: [{ply, san, eval_after_played, ...}]
+  // mates are encoded as ±(10000 - moves_to_mate)
+  if (!Array.isArray(raw)) return null;
+  return raw.map(r => {
+    const cp = typeof r.eval_after_played === "number" ? r.eval_after_played
+        : (typeof r.cp === "number" ? r.cp : 0);
+    let mate = r.mate != null ? r.mate : null;
+    if (mate == null && Math.abs(cp) >= 9000)
+      mate = Math.sign(cp) * Math.max(1, 10000 - Math.abs(cp));
+    return { cp, mate };
+  });
+}
+
+function sweepFromEvalComments(game) {
+  // fall back to [%eval] annotations if present
+  let any = false;
+  const rows = game.mainline.map(n => {
+    const m = (n.comment + " " + n.commentBefore).match(/\[%eval\s+(#?-?[\d.]+)/);
+    if (!m) return null;
+    any = true;
+    if (m[1].startsWith("#")) { const v = parseInt(m[1].slice(1), 10);
+      return { cp: v > 0 ? 10000 : -10000, mate: v }; }
+    return { cp: Math.round(parseFloat(m[1]) * 100), mate: null };
+  });
+  return any ? rows : null;
+}
+
+function loadGame(pgnText, sweepRaw, name, analysisRaw) {
+  const game = parsePgn(pgnText);
+  state.game = game;
+  state.pgnText = pgnText;
+  state.node = game.root;
+  mainlineIdxCache = null;
+  state.sweep = (sweepRaw && sweepFromJson(sweepRaw)) || sweepFromEvalComments(game);
+  state.analysis = buildAnalysisCache(game, Array.isArray(sweepRaw) ? sweepRaw : null,
+                                      analysisRaw || null);
+  const h = game.headers;
+  document.querySelector("#meta .players").textContent =
+    (h.White || "White") + " vs " + (h.Black || "Black") + "   " + (game.result || "");
+  document.querySelector("#meta .sub").textContent =
+    [h.Event, h.Date, h.Annotator ? "Annotated: " + h.Annotator : null]
+      .filter(Boolean).join(" · ");
+  document.getElementById("btn-lichess").href =
+    "https://lichess.org/paste?pgn=" + encodeURIComponent(pgnText);
+  renderMoveList();
+  renderGraph();
+  gotoNode(game.mainline[game.mainline.length - 1] || game.root, { noAnim: true });
+  document.title = "PGN viewer — " + (name || (h.White + " vs " + h.Black));
+}
+
+/* ---------------- navigation & keyboard ---------------- */
+
+function navFirst() { gotoNode(state.game.root, { noAnim: true }); }
+function navLast() {
+  let n = state.node;
+  while (n.children[0]) n = n.children[0];
+  gotoNode(n, { noAnim: true });
+}
+function navPrev() { if (state.node.parent) gotoNode(state.node.parent); }
+function navNext() { if (state.node.children[0]) gotoNode(state.node.children[0]); }
+
+document.getElementById("btn-first").addEventListener("click", navFirst);
+document.getElementById("btn-prev").addEventListener("click", navPrev);
+document.getElementById("btn-next").addEventListener("click", navNext);
+document.getElementById("btn-last").addEventListener("click", navLast);
+document.getElementById("btn-flip").addEventListener("click", flip);
+function flip() {
+  state.orientation = state.orientation === "w" ? "b" : "w";
+  refreshOrientation();
+}
+
+document.addEventListener("keydown", e => {
+  if (e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT") return;
+  switch (e.key) {
+    case "ArrowLeft": navPrev(); e.preventDefault(); break;
+    case "ArrowRight": navNext(); e.preventDefault(); break;
+    case "ArrowUp": case "Home": navFirst(); e.preventDefault(); break;
+    case "ArrowDown": case "End": navLast(); e.preventDefault(); break;
+    case "f": flip(); break;
+    case "e": {
+      const t = document.getElementById("engine-toggle");
+      if (!t.disabled) { t.checked = !t.checked; engine.toggle(t.checked); }
+      break;
+    }
+  }
+});
+
+// mouse wheel over the board steps through the game (lichess behavior)
+document.getElementById("board-wrap").addEventListener("wheel", e => {
+  e.preventDefault();
+  if (e.deltaY > 0) navNext(); else navPrev();
+}, { passive: false });
+
+document.getElementById("engine-toggle").addEventListener("change", e =>
+  engine.toggle(e.target.checked));
+document.getElementById("btn-sweep").addEventListener("click", () => engine.computeSweep());
+
+/* ---------------- load dialog ---------------- */
+
+const dlg = document.getElementById("load-dialog");
+const gameSelect = document.getElementById("game-select");
+const pgnInput = document.getElementById("pgn-input");
+const fileInput = document.getElementById("file-input");
+const loadError = document.getElementById("load-error");
+
+function fillGameSelect() {
+  gameSelect.innerHTML = "";
+  (window.EMBEDDED_GAMES || []).forEach((g, i) => {
+    const opt = document.createElement("option");
+    opt.value = i; opt.textContent = g.name;
+    gameSelect.appendChild(opt);
+  });
+  const custom = document.createElement("option");
+  custom.value = -1; custom.textContent = "— pasted / file below —";
+  gameSelect.appendChild(custom);
+}
+
+document.getElementById("btn-load").addEventListener("click", () => {
+  loadError.textContent = ""; dlg.showModal();
+});
+document.getElementById("btn-cancel").addEventListener("click", () => dlg.close());
+pgnInput.addEventListener("input", () => gameSelect.value = -1);
+fileInput.addEventListener("change", () => gameSelect.value = -1);
+
+document.getElementById("btn-do-load").addEventListener("click", async () => {
+  loadError.textContent = "";
+  try {
+    const idx = parseInt(gameSelect.value, 10);
+    if (idx >= 0) {
+      const g = window.EMBEDDED_GAMES[idx];
+      loadGame(g.pgn, g.sweep, g.name, g.analysis);
+      dlg.close();
+      return;
+    }
+    let pgn = pgnInput.value.trim(), sweepRaw = null, analysisRaw = null;
+    for (const f of fileInput.files || []) {
+      const text = await f.text();
+      if (f.name.endsWith(".json")) {
+        const parsed = JSON.parse(text);
+        if (Array.isArray(parsed)) sweepRaw = parsed;         // sweep.py output
+        else if (parsed && parsed.positions) analysisRaw = parsed; // query.py --log sidecar
+        else throw new Error(f.name + ": unrecognized JSON (expected a sweep array or an analysis sidecar with \"positions\")");
+      }
+      else pgn = text;
+    }
+    if (!pgn) throw new Error("No PGN given.");
+    loadGame(pgn, sweepRaw, null, analysisRaw);
+    dlg.close();
+  } catch (err) {
+    loadError.textContent = err.message;
+  }
+});
+
+/* ---------------- boot ---------------- */
+
+function sizeBoard() {
+  const bs = Math.min(
+    Math.max(320, Math.min(window.innerHeight - 170, window.innerWidth - 40)),
+    640,
+    window.innerWidth > 900 ? window.innerWidth - 480 : window.innerWidth - 60);
+  document.documentElement.style.setProperty("--bs", bs + "px");
+  document.getElementById("evalbar").style.height = bs + "px";
+  renderGraph();
+}
+window.addEventListener("resize", sizeBoard);
+
+fillGameSelect();
+buildSquares();
+sizeBoard();
+const first = (window.EMBEDDED_GAMES || [])[0];
+if (first) loadGame(first.pgn, first.sweep, first.name, first.analysis);
+</script>
+</body>
+</html>

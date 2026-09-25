@@ -1,0 +1,1132 @@
+{
+ "source_pgn": "010-le_brumar-vs-Chess_player1245.pgn",
+ "output_pgn": "010-le_brumar-vs-Chess_player1245-annotated.pgn",
+ "annotator": "Claude + Stockfish 17.1 (sweep depth 22; flagged moves re-checked at depth 24-28)",
+ "audience": {
+  "level": 1800,
+  "source": "user-set for le_brumar (chess-analysis skill, stage 0)"
+ },
+ "game_comment": "A 15+10 rapid Najdorf with 6.Bg5 in which White asked the right planning question out loud at move 8 (Bc4 or Be2, short or long castling, f4 now or later) and picked the slow answer. Two moves later 9.Qd2 allowed the 9...Nxe4 trick; White saw it coming, and while waiting for it counted 10.Bxe7 Nxd2 11.Bxd8 as a mass trade, one move short of seeing both pieces hang with only one of them savable. 10.Nxe4 left him a pawn down at -1.4, but 12...Nc6 traded off the only piece blocking the d-file and 13.Nxc6 bxc6 14.Nxd6+ took the pawn back with interest. After 17.Bf3 gave Black a chance (17...Ke7!) that 17...Rd8 missed, White reached a rook ending a pawn up with a 3-v-1 queenside majority and converted it cleanly: two passed pawns against a black king that went raiding on the wrong wing.",
+ "final_comment": "Black resigned. White queens next move and wins the rook for the e-pawn in any order.",
+ "moves": {
+  "5": {
+   "comment": "The Open Sicilian, as announced on the audio: 'on va apprendre à la jouer de manière ouverte' (let's learn to play it the open way)."
+  },
+  "8": {
+   "comment": "The knight hits e4 at once, which is why White has to spend the next move on Nc3 rather than choosing a setup freely."
+  },
+  "10": {
+   "comment": "The Najdorf. ...a6 takes b5 away from White's knight and bishop and keeps ...e5 or ...b5 in reserve."
+  },
+  "15": {
+   "comment": "The plan pause. White to move, +0.4, nothing hanging, and he asked the right questions out loud: 'Bc4, ou tranquillement e2 et petit roque? ... laisser les deux routes ouvertes ... f4 plus tard' (Bc4 or Be2, short or long castling, f4 later). At one common depth (26): 8.f4 +0.4, 8.Qe2 0.0, 8.a3 0.0, 8.Qf3 0.0, 8.Be2 -0.1, 8.Bc4 -0.4. Be2 beat Bc4, so his feeling that c4 hits granite was right. But Qe2, a3, Qf3 and Be2 sit within 0.1 of each other and f4 stands half a pawn clear: the position has one plan, and it starts with the pawn move he postponed ('later' costs: after 8.Be2 Be7, 9.f4 is -0.2). White's plan: f4 now, the h4 bishop home to f2 where it guards d4 against ...Qb6, queen to f3 to hold e4, castle long. Black's plan: ...Be7, ...b5, ...Bb7, then ...b4 to chase the c3 knight, the only defender of e4, and ...g5 to chase the h4 bishop. Both plans are about the same two things, the e4 pawn and the loose h4 bishop. That is why the 9...Nxe4 trick could happen at all: in the engine plan, ...Nxe4 after 8.f4 Be7 9.Qf3 simply loses a piece (+4.3), and after Bf2 there is no bishop on h4 to collect. The crash itself was a missed tactic, but it landed exactly on the fault line both plans are about.",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "f4",
+       "comment": "now, while ...g5 is still a mistake (+1.1): it would just open the f-file"
+      },
+      {
+       "san": "Qb6",
+       "comment": "Black's best, hitting d4 and b2"
+      },
+      {
+       "san": "a3",
+       "comment": "takes b4 away and keeps b2 quiet"
+      },
+      {
+       "san": "Be7"
+      },
+      {
+       "san": "Bf2",
+       "comment": "the bishop comes home: it guards d4 against the queen and is no longer a loose piece on h4"
+      },
+      {
+       "san": "Qc7"
+      },
+      {
+       "san": "Qf3",
+       "comment": "the queen holds e4, so ...Nxe4 is off the table"
+      },
+      {
+       "san": "Nbd7"
+      },
+      {
+       "san": "O-O-O",
+       "comment": "+0.6: long castling, and g4-g5 is the follow-up"
+      }
+     ],
+     "comment": "White's plan (+0.4 to +0.6): f4 first, bishop back to f2, queen to f3, castle long. After that, e4 is solidly defended and the h4 bishop is no longer a target."
+    },
+    {
+     "line": [
+      {
+       "san": "Rb1",
+       "comment": "a pass, to show what Black wants"
+      },
+      {
+       "san": "b5"
+      },
+      {
+       "san": "Be2"
+      },
+      {
+       "san": "Be7"
+      },
+      {
+       "san": "O-O"
+      },
+      {
+       "san": "Bb7",
+       "comment": "bishop and f6 knight both aim at e4"
+      },
+      {
+       "san": "Bf3",
+       "comment": "now e4 needs a piece to guard it"
+      },
+      {
+       "san": "Nbd7"
+      },
+      {
+       "san": "a4"
+      },
+      {
+       "san": "b4",
+       "comment": "chases the c3 knight, e4's only real defender"
+      },
+      {
+       "san": "Na2"
+      },
+      {
+       "san": "g5",
+       "comment": "-1.2: and now the h4 bishop is chased too, with ...Ne5 and ...Nxe4 coming"
+      }
+     ],
+     "comment": "Black's plan: ...b5-b4 kicks the knight away from e4, ...g5 kicks the bishop off h4, and e4 falls. It is the mirror of White's plan and it is about the same pawn."
+    }
+   ],
+   "glyph": "?!"
+  },
+  "16": {
+   "comment": "Black breaks the pin on f6 and gets ready to castle short. The h4 bishop now has no pin to exploit and stands undefended (the e2 bishop blocks the queen)."
+  },
+  "22": {
+   "comment": "Black keeps the extra pawn and the bishop pair (-1.9). White's compensation has to come from development and the open d-file."
+  },
+  "25": {
+   "comment": "The right order: trade on c6 first. 13.Nxd6+ at once fails because the d4 knight still blocks the d-file, so after ...Bxd6 nothing can recapture."
+  },
+  "27": {
+   "comment": "Material is level again, but the structure has turned: an isolated c6 pawn, a weak a6 pawn and a king still in the centre (+2.4)."
+  },
+  "29": {
+   "comment": "He reads the new structure correctly: 'Du coup maintenant il a un pion isolé' (now he has an isolated pawn). The c6 pawn is the target for the next ten moves."
+  },
+  "30": {
+   "comment": "Taking the queens makes White's d-file pressure easier to use. 15...Bb7 was a little more stubborn (+2.3 against +2.6)."
+  },
+  "31": {
+   "comment": "As predicted on the audio ('il va faire dame prend'), the queens came off and the rook lands on d6 eyeing both c6 and a6."
+  },
+  "37": {
+   "comment": "White is a clean pawn up (6 against 5) with a 3-to-1 queenside majority, and Black's h8 rook and king are still undeveloped (+3.9)."
+  },
+  "38": {
+   "comment": "Back to a8 to hold a6: the rook that went to d8 two moves ago has gone round in a circle."
+  },
+  "39": {
+   "comment": "The engine's first choice too. His reasoning: bring the second rook to attack a6, 'il a du retard de développement, j'abuse de ça' (he's behind in development, I'm exploiting it)."
+  },
+  "40": {
+   "comment": "Castling finally activates the h8 rook, but 20...a5 first (+3.9 against +4.2) got the pawn off the square the rooks were aiming at."
+  },
+  "41": {
+   "comment": "Doubling on the a6 pawn: 'je devrais pouvoir manger le pion sans angoisse' (I should be able to take the pawn without worry). Rd4 and Rdd6 are practically equal (+4.0 and +3.9 at depth 22)."
+  },
+  "42": {
+   "comment": "The pawn steps out of the double attack."
+  },
+  "43": {
+   "comment": "He saw it straight away: 'ça n'attaque pas le pion... il ne se passe rien' (it doesn't attack the pawn, nothing happens). Harmless though: +4.3 against +4.4 for 22.c4, and the rook offers the a-file trade on White's terms."
+  },
+  "45": {
+   "comment": "Good decision-making. He considered a4 and swinging a rook back to win a5, spotted that Black would then take the other rook, and chose b3: luft for the king, support for c4, and a path Kb2-a3 towards a5. The engine's first choice (+4.9, trading on a8 at once +4.6)."
+  },
+  "46": {
+   "comment": "Black's only plan: bring the king to the centre and towards f2, since the rooks alone cannot hold the queenside."
+  },
+  "47": {
+   "comment": "He debated collecting a5 with the king against pushing c4 at once. The engine sees no difference (Kb2 and c4 both +5.1 in the sweep), and its main line after Kb2 plays c4 two moves later anyway."
+  },
+  "48": {
+   "comment": "The king heads for e4 and f2. 24...Kf6 was a shade tighter (+5.2 against +5.4), but this is the race that decides the game."
+  },
+  "49": {
+   "comment": "Trading rooks is best. Of the follow-ups he named, at depth 22: 26.c4 +4.2, 26.Rd7 +3.8, 26.Rd4 +3.1. Rd4 is the one to avoid."
+  },
+  "51": {
+   "comment": "'On y va maintenant sur c4 pour mettre la pression' (let's go c4 now to put on pressure): the engine's first choice (+4.2 at depth 22, 26.a3 a little weaker at +3.9). His worry that 26.Rd4 lets ...e5 gain time was right: +3.1."
+  },
+  "52": {
+   "comment": "Black's counterplay: kingside pawns supported by the king. 26...Ke4 at once was about the same (+5.5 against +5.7)."
+  },
+  "53": {
+   "comment": "Good decision. His note while choosing this move: \"je vais pousser c5 ... c'est le plan plus simple: on va faire a3, b4, et on pousse nos deux pions\" (\"I'll push c5 ... the simpler plan: a3, b4, and push both pawns\"). He was right to put a3 first. 27.c5 right away drops the pawn: ...Rc8 hits it, b4 can't support it while ...axb4 is possible, and ...f6/...Ke5 drives the d6-rook off its defence. The engine slightly prefers 27.Kc3 to a3 (+5.1 against +4.8 at depth 24), bringing the king up to support the pawns, but that is a small difference.",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "c5",
+       "comment": "too early: no pawn can come to b4 yet"
+      },
+      {
+       "san": "Rc8",
+       "comment": "hits c5; b4 would be met by ...axb4"
+      },
+      {
+       "san": "c6"
+      },
+      {
+       "san": "f6",
+       "comment": "covers e5 so the king can attack the rook"
+      },
+      {
+       "san": "Kc3"
+      },
+      {
+       "san": "Ke5",
+       "comment": "the d6-rook has to leave, and the c6-pawn loses its defender"
+      },
+      {
+       "san": "Rd4"
+      },
+      {
+       "san": "Rxc6+"
+      }
+     ],
+     "comment": "+0.2: the lone c-pawn falls and White's extra pawn is gone. That's why a3/b4 had to come first."
+    }
+   ]
+  },
+  "57": {
+   "comment": "Two connected passed pawns on b4 and c4 against Black's king and kingside pawns. From here it is a tempo count, and White's pawns are closer."
+  },
+  "60": {
+   "comment": "The king goes for f2, trading its defensive role for a passed pawn of its own."
+  },
+  "61": {
+   "comment": "'J'aurais pu faire c5 tout à l'heure, je suis idiot' (I could have played c5 earlier): not idiotic. 28.c5 was 0.2 better than b4, a move-order detail, and a move before a3 it would have thrown the win away. Now c5 is the engine's choice too."
+  },
+  "63": {
+   "comment": "Tempo count: c7 is next, and Black has no pawn anywhere near queening."
+  },
+  "66": {
+   "comment": "The rook blockades on c8, but it now has to watch c7 and the b-pawn at the same time."
+  },
+  "67": {
+   "comment": "Rook behind the passed pawn: Rc1 defends c7 from behind and frees the b-pawn to run."
+  },
+  "69": {
+   "comment": "The second pawn runs; one rook cannot stop two connected pawns on the seventh and fifth ranks."
+  },
+  "73": {
+   "comment": "Black has to give the rook for the c-pawn."
+  },
+  "75": {
+   "comment": "Trading rooks first is the clean route. 38.b8=Q at once allows ...Rxc1 and leaves White fighting the e-pawn with a queen (+11.7 instead of a forced mate)."
+  },
+  "77": {
+   "comment": "Check first, then the rook gets behind the e-pawn."
+  },
+  "79": {
+   "comment": "The rook stops the e-pawn from behind and b8=Q follows."
+  },
+  "32": {
+   "glyph": "?!",
+   "comment": "Bb7 puts the bishop where a rook on d7 will hit it, and leaves d7 open for exactly that. 16...Bd7 (+2.7 instead of +3.3) guards c6 and plugs the d-file, so White's rooks have no entry square. Black is worse either way (king in the centre, c6 and a6 weak, rook h8 asleep), but Bd7 keeps the rooks out.",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "Bd7",
+       "comment": "blocks the d-file and defends c6"
+      },
+      {
+       "san": "Rhd1"
+      },
+      {
+       "san": "Ra7",
+       "comment": "the a-rook covers the 7th rank sideways"
+      },
+      {
+       "san": "Bf3"
+      },
+      {
+       "san": "Ke7"
+      },
+      {
+       "san": "Bxc6",
+       "comment": "now it works"
+      },
+      {
+       "san": "Bxc6"
+      },
+      {
+       "san": "Rxc6"
+      }
+     ],
+     "comment": "+2.7: White still wins c6, but the order is Rhd1 first, then Bf3."
+    }
+   ]
+  },
+  "33": {
+   "glyph": "??",
+   "comment": "The plan was Bf3 to hit c6, then double on the 7th (\"l'idée ce serait de doubler sur la septième rangée\"). The order is wrong. Bf3 leaves the d6 rook without a defender, and 17...Ke7! hits it with tempo: now Bxc6 fails to ...Kxd6, the king covers d7 so the 7th rank is shut, and after the forced Rhd1 Black plays ...Rad8 and trades all four rooks into a same-coloured bishop ending worth only +0.7. 17.Rhd1 first (+3.4) protects d6, and then ...Ke7 is met by Rd7+ winning the b7 bishop. Once the rooks are on the d-file, Bf3 and Bxc6 come later with no counterplay. Rule: when an advanced rook is undefended, defend it before starting the attack.",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "Rhd1",
+       "comment": "defends d6 and prepares Rd7, which hits b7 and f7"
+      },
+      {
+       "san": "c5",
+       "comment": "Black's most stubborn try: gets the pawn off c6 and opens the long diagonal for the bishop"
+      },
+      {
+       "san": "Rd7",
+       "comment": "the 7th rank, which was the point of the whole plan"
+      },
+      {
+       "san": "Bd5"
+      },
+      {
+       "san": "Rc7",
+       "comment": "going after c5; the other rook holds the d-file"
+      },
+      {
+       "san": "O-O",
+       "comment": "the king finally leaves, but the rooks already dominate"
+      },
+      {
+       "san": "c4",
+       "comment": "kicks the bishop off d5, and c5 falls"
+      },
+      {
+       "san": "Be4"
+      },
+      {
+       "san": "Rxc5"
+      }
+     ],
+     "comment": "+3.3: a clean extra pawn, with rooks on the c- and d-files and the 7th rank."
+    },
+    {
+     "line": [
+      {
+       "san": "Rhd1"
+      },
+      {
+       "san": "Ke7",
+       "comment": "the move that punishes Bf3 does not work here"
+      },
+      {
+       "san": "Rd7+",
+       "comment": "with d1 behind it the rook enters with check"
+      },
+      {
+       "san": "Kf6",
+       "comment": "forced"
+      },
+      {
+       "san": "Rxb7"
+      }
+     ],
+     "comment": "+5.7: the b7 bishop falls. That is the difference between Rhd1 and Bf3."
+    }
+   ]
+  },
+  "34": {
+   "glyph": "??",
+   "comment": "17...Rd8 ignores c6: 18.Bxc6+ wins it. 17...Ke7! (+0.7) was the move: it hits d6 and heads for ...Rad8 and a full rook trade. After 19.Rxc6 White is a pawn up with a 3-v-1 queenside majority (a, b and c against Black's a-pawn), and the c6 rook hits a6 and e6 while the h8 rook and e8 king are still undeveloped: +3.6.",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "Ke7",
+       "comment": "hits the undefended rook; the king now also covers d6 and d7"
+      },
+      {
+       "san": "Rhd1",
+       "comment": "forced: the rook has no better square",
+       "variations": [
+        {
+         "line": [
+          {
+           "san": "Bxc6",
+           "comment": "the capture that worked a move earlier"
+          },
+          {
+           "san": "Kxd6",
+           "comment": "not check any more, so the king takes the rook"
+          },
+          {
+           "san": "Bxb7"
+          },
+          {
+           "san": "Ra7"
+          }
+         ],
+         "comment": "-1.3: bishop and pawn for a rook."
+        }
+       ]
+      },
+      {
+       "san": "Rad8",
+       "comment": "challenges the d-file; White cannot avoid the trades"
+      },
+      {
+       "san": "Rxd8",
+       "comment": "all four rooks come off"
+      },
+      {
+       "san": "Rxd8"
+      },
+      {
+       "san": "Rxd8"
+      },
+      {
+       "san": "Kxd8"
+      },
+      {
+       "san": "c4"
+      },
+      {
+       "san": "Kc7",
+       "comment": "the king reaches c7 and guards the weak pawns"
+      },
+      {
+       "san": "c5"
+      }
+     ],
+     "comment": "+0.7: a same-coloured bishop ending with equal pawns. White is better but far from winning."
+    }
+   ]
+  },
+  "44": {
+   "comment": "22...Rfc8 was the engine's pick: the idle f8-rook goes to face the c-pawn before b3/c4 roll. 22...Kh7 heads the king toward the centre instead (Kh7-g6-f5 took three moves). At depth 24 the two are +3.9 and +4.0, so no real difference.",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "Rfc8"
+      },
+      {
+       "san": "Rxa8"
+      },
+      {
+       "san": "Rxa8"
+      },
+      {
+       "san": "c4"
+      },
+      {
+       "san": "Rc8",
+       "comment": "the remaining rook sits in front of the c-pawn"
+      },
+      {
+       "san": "b3"
+      },
+      {
+       "san": "Kf8"
+      }
+     ],
+     "comment": "+3.9: the same won rook ending, with Black's rook placed a little better."
+    }
+   ]
+  },
+  "55": {
+   "comment": "The plan stated at move 27, carried out. 28.c5 was marginally better (+5.5 vs +5.3 at depth 26): with a3 already in, b4 can back it next move and the king has time to reach c3.",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "c5"
+      },
+      {
+       "san": "Ke4"
+      },
+      {
+       "san": "Kc3",
+       "comment": "the king joins the pawns first; b4 can wait"
+      },
+      {
+       "san": "f5"
+      },
+      {
+       "san": "b4"
+      },
+      {
+       "san": "axb4+"
+      },
+      {
+       "san": "axb4"
+      }
+     ],
+     "comment": "+5.5: the game's structure, with White's king already on c3."
+    }
+   ]
+  },
+  "58": {
+   "comment": "The sweep's 1.0 loss disappears at depth 24-28: 29...Ke5 is +5.7, the same as the engine's first choice 29...e5 (depth 28), and 29...Ra4 is +6.2. Black is lost either way. The only point is speed: with ...e5 the king goes after h2 at once (Kg4-h3xh2), while the game's route Ke5-e4-f3xf2 took four moves.",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "e5"
+      },
+      {
+       "san": "b5"
+      },
+      {
+       "san": "Kg4"
+      },
+      {
+       "san": "b6"
+      },
+      {
+       "san": "Rb8",
+       "comment": "the rook stops the b-pawn from in front"
+      },
+      {
+       "san": "c5"
+      },
+      {
+       "san": "Kh3",
+       "comment": "the king goes straight for h2, two moves faster than in the game"
+      }
+     ],
+     "comment": "+5.7: kingside counterplay started earlier, but White is still winning."
+    }
+   ]
+  },
+  "59": {
+   "glyph": "?!",
+   "comment": "His note: \"il attaque ma tour, je recule comme prévu, d1 pour éviter les embrouilles\" (\"he attacks my rook, I retreat as planned, d1 to avoid complications\"). Retreating was correct. The problem is the square. On d2 the rook still guards f2, so ...Ke4-f3 finds nothing to take. On d1 it does not, and the game's ...Kf3xf2 followed. Rd2 +5.8, Rd1 +5.2 at depth 24. The loss is between two winning evals, so it's about technique only.",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "Rd2",
+       "comment": "guards f2 from the side"
+      },
+      {
+       "san": "Ke4",
+       "comment": "...Kf3 now attacks nothing"
+      },
+      {
+       "san": "b5"
+      },
+      {
+       "san": "Rc8"
+      },
+      {
+       "san": "Kc3"
+      },
+      {
+       "san": "f5"
+      },
+      {
+       "san": "b6"
+      }
+     ],
+     "comment": "+5.8: Black's king has no target, and the pawns advance."
+    }
+   ]
+  },
+  "62": {
+   "glyph": "?!",
+   "comment": "The king raid is Black's only counterplay, but the pawns should go first. 31...f5-f4 breaks up g3 and creates a passed pawn before the c-pawn arrives, with the king supporting it from e4/e3. 31...Kf3 goes for f2, and White doesn't need to defend that pawn. f5 +6.1 vs Kf3 +6.7 (depth 24). Both are lost.",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "f5"
+      },
+      {
+       "san": "Kb3"
+      },
+      {
+       "san": "f4",
+       "comment": "the break: after the exchanges on g3 a black passer can appear"
+      },
+      {
+       "san": "c6"
+      },
+      {
+       "san": "fxg3"
+      },
+      {
+       "san": "fxg3"
+      },
+      {
+       "san": "h4"
+      },
+      {
+       "san": "c7"
+      },
+      {
+       "san": "hxg3"
+      },
+      {
+       "san": "hxg3"
+      },
+      {
+       "san": "Ke3",
+       "comment": "the king heads for White's rook and the queenside"
+      }
+     ],
+     "comment": "+6.1: White still queens first, but Black gets more play."
+    }
+   ]
+  },
+  "64": {
+   "glyph": "?",
+   "comment": "32...Kxf2 wins a pawn but gives White c7 with tempo, threatening Rd8 and c8. Black's king on f2 is far from the c-pawn, and the best defence is already 33...Ke3 34.Rd8 Rxd8 35.cxd8=Q, giving the rook. 32...Ke2 attacks the rook first. It has to leave the d-file, so Rd8 no longer supports the pawn. Then ...h4 gxh4 ...g4 gets a kingside passer moving, and f2 can be taken later. Kxf2 +8.7, Ke2 +7.8, h4 +7.4 (depth 24; the sweep's 2.8 is inflated). Lost either way.",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "Ke2",
+       "comment": "attacks the rook with tempo"
+      },
+      {
+       "san": "Rc1",
+       "comment": "off the d-file; Rd8 is no longer available to support c7-c8"
+      },
+      {
+       "san": "h4"
+      },
+      {
+       "san": "gxh4"
+      },
+      {
+       "san": "g4",
+       "comment": "the g-pawn becomes a runner"
+      },
+      {
+       "san": "c7"
+      },
+      {
+       "san": "Kxf2",
+       "comment": "now f2 falls with the king escorting the g-pawn"
+      },
+      {
+       "san": "b5"
+      },
+      {
+       "san": "g3"
+      },
+      {
+       "san": "hxg3"
+      },
+      {
+       "san": "e5"
+      }
+     ],
+     "comment": "+7.2: still lost, but Black has pawns moving instead of a stray king."
+    }
+   ]
+  },
+  "65": {
+   "comment": "The obvious push, and the engine's first choice too (+7.6). The sweep's huge 'loss' here is a mate-score artifact, not a mistake."
+  },
+  "68": {
+   "comment": "Black loses the race by one tempo: the b-pawn reaches b7 and the c8 rook cannot cover both b8 and c7. The sweep's huge 'loss' here is a mate-score artifact: Black is lost after any move, and 34...Ra8, behind the b-pawn, only keeps the rook alive a few moves longer.",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "Ra8",
+       "comment": "behind the b-pawn, ready to check from b4"
+      },
+      {
+       "san": "b5"
+      },
+      {
+       "san": "Ra4"
+      },
+      {
+       "san": "c8=Q"
+      },
+      {
+       "san": "Rb4+",
+       "comment": "the only check"
+      },
+      {
+       "san": "Ka3"
+      },
+      {
+       "san": "Re4",
+       "comment": "the rook survives a few moves longer"
+      }
+     ],
+     "comment": "Queen against rook and pawns, winning for White."
+    }
+   ]
+  },
+  "21": {
+   "glyph": "?!",
+   "comment": "White is a pawn down after the 9...Nxe4 trick, and the compensation is one thing: the d6 pawn is backward on a half-open file, and Black's king is still in the centre. 11.g3 does nothing for that. It sends the bishop to e7, the square it wanted anyway (it guards d6 from there), and White has spent a tempo and loosened f3/h3 to help it get there. The live comment was 'Ça peut lui laisser le doute' (it may leave him some doubt), but the retreat is obvious. After 11...Be7 the engine's best is still 12.c4, so g3 simply cost a move: -1.9 instead of -1.3.",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "c4",
+       "comment": "the point: ...d5 is Black's freeing move (it gets rid of the d6 target and hits Ne4). With c4 in, ...d5 either can't be played or costs Black an isolated pawn."
+      },
+      {
+       "san": "O-O",
+       "comment": "Black ignores the bishop question; 11...Be7 12.Rd1 d5 13.Ng3 is -1.2, the game position with c4 in place of g3"
+      },
+      {
+       "san": "Rd1",
+       "comment": "rook onto the d-file first: every White piece is lined up on d6"
+      },
+      {
+       "san": "d5",
+       "comment": "Black frees himself anyway, but only at the price of a structural concession"
+      },
+      {
+       "san": "cxd5"
+      },
+      {
+       "san": "exd5",
+       "comment": "isolated d-pawn: White has a fixed target again, now on d5"
+      },
+      {
+       "san": "Nc3",
+       "comment": "the knight retreats with pressure on d5 instead of being kicked around"
+      },
+      {
+       "san": "Bg5"
+      },
+      {
+       "san": "Qc2"
+      }
+     ],
+     "comment": "-1.3: still a pawn down, but White has a fixed target and a plan (pieces on d5, O-O, Rd1)."
+    },
+    {
+     "line": [
+      {
+       "san": "c4"
+      },
+      {
+       "san": "d5",
+       "comment": "immediately"
+      },
+      {
+       "san": "cxd5"
+      },
+      {
+       "san": "exd5"
+      },
+      {
+       "san": "Nc3"
+      },
+      {
+       "san": "Nc6"
+      },
+      {
+       "san": "Qe3+",
+       "comment": "the uncastled king pays: Black must block and accept the queen trade"
+      },
+      {
+       "san": "Qe7"
+      },
+      {
+       "san": "Qxe7+"
+      },
+      {
+       "san": "Nxe7"
+      }
+     ],
+     "comment": "-1.3: an isolated d5 pawn in an endgame-like position, the kind of structure where a pawn deficit can be held."
+    }
+   ]
+  },
+  "23": {
+   "glyph": "?!",
+   "comment": "Here the thinking was 'Propose des échanges. Est-ce que c'est bien pour moi d'échanger? Est-ce que je récupérerai pas ... le pion que j'ai perdu?' (offer trades, does that help me win the pawn back?). The instinct is right: the pawn comes back through pressure on d6, and trades that open the d-file help. But 12.O-O-O does not stop Black from removing the target: 12...d5! 13.Nc3 and Black has a sound extra pawn with d5/e6 in the centre (-2.2 in the engine line). 12.c4 again keeps ...d5 from being free. After 12...d5 13.cxd5 exd5 Black has an isolated pawn (-1.6), and White keeps a structure to aim at. The gap is small (0.35); the lesson is structural. When you are a pawn down for pressure on a weak pawn, first stop that pawn from advancing, then bring up pieces.",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "c4",
+       "comment": "clamps d5"
+      },
+      {
+       "san": "O-O",
+       "comment": "12...d5 13.cxd5 exd5 is -1.6: the freeing push costs Black an isolated pawn"
+      },
+      {
+       "san": "O-O",
+       "comment": "short castling here, because the fight is in the centre and White has no reason to put the king on the side where c4 has already loosened things"
+      },
+      {
+       "san": "Nc6"
+      },
+      {
+       "san": "Rad1",
+       "comment": "d6 is attacked by the knight, queen and rook, so Black has to act"
+      },
+      {
+       "san": "d5"
+      },
+      {
+       "san": "Nc3",
+       "comment": "the knight moves back with tempo on d5; Black gets ...d5 in but has spent moves on it, and the c4 pawn keeps the centre in contact"
+      }
+     ],
+     "comment": "-1.8: still a pawn down, but Black has had to spend time to free himself."
+    }
+   ]
+  },
+  "24": {
+   "glyph": "??",
+   "comment": "Before this move d6 was safe for one reason: White's own knight on d4 blocked the d-file, so the Qd2/Rd1 battery could not reach d6. (12...O-O 13.Nxd6? fails to 13...Qxd6, -4.8.) 12...Nc6 offers the trade that removes that knight: 13.Nxc6 bxc6 is forced, since 13...Qc7 14.Nxe7 is +5.5, and now d6 has three attackers (Ne4, Qd2, Rd1) and two defenders (Be7, Qd8). 14.Nxd6+ comes with check, so Black cannot add a defender, and the trades end with a White piece on d6. White gets the pawn back, the c6/a6 pawns are weak, the king has not castled, and the eval goes from -2.2 to +2.3. The rule: when an opponent's piece is blocking its own file, don't trade it off for him.",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "d5",
+       "comment": "the same freeing push again: it removes the d6 target and kicks the knight"
+      },
+      {
+       "san": "Nc3"
+      },
+      {
+       "san": "e5",
+       "comment": "space with tempo on Nd4"
+      },
+      {
+       "san": "Nb3"
+      },
+      {
+       "san": "d4",
+       "comment": "the knight is kicked again; Black's pawns take the centre"
+      },
+      {
+       "san": "Ne4"
+      },
+      {
+       "san": "O-O",
+       "comment": "castled, a sound extra pawn, and a mobile centre (the engine continues ...f5 and ...e4)"
+      }
+     ],
+     "comment": "-2.3: Black stays a clean pawn up, with no target left on the d-file."
+    },
+    {
+     "line": [
+      {
+       "san": "O-O",
+       "comment": "also fine (-2.0). The d6 pawn is not hanging yet:"
+      },
+      {
+       "san": "Nxd6",
+       "comment": "fails: the d-file is still shut"
+      },
+      {
+       "san": "Qxd6"
+      }
+     ],
+     "comment": "-4.8"
+    }
+   ]
+  },
+  "11": {
+   "comment": "The Najdorf's sharpest main line, and at depth 24 the engine's own first choice (+0.4; the sweep's 0.25 gap to 6.Be3 does not survive a deeper look). On the tape: 'Bc4 or b5 or g5?' b5 is covered by ...a6. 6.Bc4 (the Fischer-Sozin, +0.2) is playable; the ...b5-b4 idea he mentions is real, which is why that line retreats Bb3 at once. 6.Bg5 keeps the option of Bxf6 open. As for ...Qb6: right now 6...Qb6 7.Bxf6 gxf6 8.Nd5 is good for White (+1.4, see the next move). The Qb6 to respect is the Poisoned Pawn, 6...e6 7.f4 Qb6, where Qd2 or Nb3 are the standard answers."
+  },
+  "12": {
+   "glyph": "?!",
+   "comment": "The whole question of 6.Bg5 is how Black meets Bxf6. After 6...e6 (or ...Nbd7) the answer is ready: the d8-f6 diagonal is open, so Bxf6 Qxf6 costs Black nothing and even hands over the bishop pair. 6...h6 asks the question one move too early: e7 still blocks the queen, so Bxf6 forces a pawn recapture. ...exf6 leaves d6 backward and d5 a permanent hole (+1.7); ...gxf6 wrecks the kingside, and the h6 pawn becomes a target for Qh5 as soon as the f8 bishop leaves. The engine rates it +1.0 against +0.4 for 6...e6 (depth 24).",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "e6"
+      },
+      {
+       "san": "f4",
+       "comment": "the main line; now ...Qb6 is the Poisoned Pawn"
+      },
+      {
+       "san": "Qb6"
+      },
+      {
+       "san": "Qd2"
+      },
+      {
+       "san": "Qxb2"
+      }
+     ],
+     "comment": "+0.4: standard Najdorf theory, nothing conceded"
+    },
+    {
+     "line": [
+      {
+       "san": "e6"
+      },
+      {
+       "san": "Bxf6",
+       "comment": "the capture ...h6 was provoking"
+      },
+      {
+       "san": "Qxf6",
+       "comment": "possible only because e7 has moved: healthy pawns, and Black keeps the two bishops"
+      }
+     ],
+     "comment": "-0.3: with ...e6 in, Bxf6 is harmless"
+    },
+    {
+     "line": [
+      {
+       "san": "Qb6",
+       "comment": "the move asked about on tape"
+      },
+      {
+       "san": "Bxf6",
+       "comment": "take first: now ...Qxf6 is impossible (e7 is in the way), so the structure breaks"
+      },
+      {
+       "san": "gxf6",
+       "comment": "forced"
+      },
+      {
+       "san": "Nd5",
+       "comment": "hits the queen and f6; b2 no longer matters"
+      },
+      {
+       "san": "Qa5+"
+      },
+      {
+       "san": "c3"
+      }
+     ],
+     "comment": "+1.4: 6...Qb6 at once does not work; the real ...Qb6 comes only after ...e6 and f4"
+    }
+   ]
+  },
+  "13": {
+   "glyph": "?!",
+   "comment": "On tape: 'Je recule naturellement en h4... il peut me manger potentiellement', with long castling planned if Black pushed a second time. The push is not the danger: 7...g5 8.Bg3 is +0.4 and fine for White. The problem is that 7.Bh4 passes on the exact capture ...h6 invited. 7.Bxf6 forces a pawn recapture and gives White a lasting plus (+1.0 vs +0.4): Black's king has no safe home, the light squares d5, f5 and f7 are weak, and Black must spend ...h5 to stop Qh5. On h4 the bishop is loose and pins nothing yet, and once ...e6 is in, it is the piece the ...Nxe4/...Bxh4 trick later hits. Rule: when the opponent spends a tempo to question your pinning bishop, check whether taking now damages his structure before you retreat.",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "Bxf6"
+      },
+      {
+       "san": "gxf6",
+       "comment": "...exf6 is worse (+1.7), see the previous note"
+      },
+      {
+       "san": "Bc4",
+       "comment": "aims at f7 and e6; the threat is Qh5, hitting f7 and h6"
+      },
+      {
+       "san": "h5",
+       "comment": "nearly forced: the natural 8...e6 or 8...Bg7 run into 9.Qh5 at +2.2 or more. The h-pawn moves again, so ...h6 was a wasted tempo"
+      },
+      {
+       "san": "Qe2",
+       "comment": "not Qh5 any more; the queen prepares O-O-O and keeps f3 available to meet ...Bg4"
+      },
+      {
+       "san": "Bg4"
+      },
+      {
+       "san": "f3",
+       "comment": "blunts the pin; the bishop has to retreat, another lost tempo"
+      },
+      {
+       "san": "Bd7"
+      },
+      {
+       "san": "O-O-O"
+      },
+      {
+       "san": "e6",
+       "comment": "Black still has no safe square for the king; White plays f4-f5 against e6"
+      }
+     ],
+     "comment": "+1.0: a lasting structural plus, with no tactics needed"
+    }
+   ]
+  },
+  "17": {
+   "comment": "Heading for O-O-O. Right after playing it: \"D2 c'est pas bon... cavalier prend E4, forcément\" (Qd2 was bad, the knight takes e4). It was not a pawn blunder: 9...Nxe4 fails tactically (see 10.Bxe7). The real cost is about 0.2 (-0.4 against -0.2 for 9.f4 or 9.a4).",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "f4",
+       "comment": "the sweep's choice: e4 gets a second defender, so ...Nxe4 is never on"
+      },
+      {
+       "san": "Qb6"
+      },
+      {
+       "san": "Qd3",
+       "comment": "only now the queen; the b2 pawn is offered for time"
+      }
+     ],
+     "comment": "-0.2: roughly equal, with no loose queen on d2."
+    }
+   ]
+  },
+  "18": {
+   "glyph": "??",
+   "comment": "The trick: the knight leaves f6 with tempo on Qd2 and Nc3 and opens the e7-h4 diagonal, so after 10.Nxe4 Bxh4 Black has won the e4 pawn. The flaw is that the unmasked e7 bishop is loose too (see 10.Bxe7). -0.3 with a normal move becomes +4.0 with correct play.",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "O-O"
+      },
+      {
+       "san": "Qe3",
+       "comment": "the queen leaves the square the knight can fork from and puts a second eye on e4"
+      },
+      {
+       "san": "b5"
+      },
+      {
+       "san": "Bf3"
+      },
+      {
+       "san": "b4",
+       "comment": "the standard queenside push: it chases Nc3 away from guarding e4"
+      }
+     ],
+     "comment": "-0.3: normal Najdorf play, Black comfortable."
+    }
+   ]
+  },
+  "19": {
+   "glyph": "??",
+   "comment": "He did look at 10.Bxe7: \"Fou prend, cavalier prend, fou prend, et on échange tout\" (bishop takes, knight takes, bishop takes, everything gets traded), and dropped it as an even mass trade. His count stopped one move early. After 10.Bxe7 Nxd2 11.Bxd8, both queens and one pair of bishops are off, but Black's knight is still on d2 and White's bishop is on d8, both en prise, with Black to move. Black can save only one: 11...Kxd8 12.Kxd2 leaves White a knight up for a pawn (+4.0). Declining with 10...Qxe7 fails to 11.Nxe4. Instead 10.Nxe4 Bxh4 is simply a pawn down (-1.4), and he knew it: \"je le laisse prendre, et je fais un grand roque\" (I let him take and castle long). The pawn buys no attack: Black keeps the bishop pair, and the h4 bishop eyes f2. Lesson: when a trade sequence involves mutual attacks on queens, keep counting to the last capture. The last piece left in the other side's camp decides the material.",
+   "variations": [
+    {
+     "line": [
+      {
+       "san": "Bxe7",
+       "comment": "takes the piece the trick unmasked, with tempo on d8"
+      },
+      {
+       "san": "Nxd2",
+       "comment": "the most natural reply; the knight goes deeper into White's camp"
+      },
+      {
+       "san": "Bxd8",
+       "comment": "queen back. Now Nd2 and Bd8 are both hanging, and only Black can capture first"
+      },
+      {
+       "san": "Kxd8"
+      },
+      {
+       "san": "Kxd2",
+       "comment": "the move missing from 'on échange tout': queens and bishops are traded, but the knight that took e4 and d2 is gone for nothing"
+      },
+      {
+       "san": "Nc6"
+      },
+      {
+       "san": "Nxc6+"
+      },
+      {
+       "san": "bxc6"
+      }
+     ],
+     "comment": "+4.1: a clean piece for a pawn in a queenless middlegame, with Black's queenside pawns broken."
+    },
+    {
+     "line": [
+      {
+       "san": "Bxe7"
+      },
+      {
+       "san": "Nxd2"
+      },
+      {
+       "san": "Bxd8"
+      },
+      {
+       "san": "Nf3+",
+       "comment": "the desperado check: the knight is lost anyway, so it tries to wreck the kingside on the way out"
+      },
+      {
+       "san": "gxf3"
+      },
+      {
+       "san": "Kxd8"
+      }
+     ],
+     "comment": "+4.5: the doubled f-pawns don't matter; White is still a piece up for a pawn."
+    },
+    {
+     "line": [
+      {
+       "san": "Bxe7"
+      },
+      {
+       "san": "Qxe7",
+       "comment": "saves the bishop's worth by recapturing, but spends the move Black needed to take on d2"
+      },
+      {
+       "san": "Nxe4",
+       "comment": "the attacker of d2 simply disappears; White's queen was never in danger"
+      },
+      {
+       "san": "O-O"
+      },
+      {
+       "san": "O-O"
+      }
+     ],
+     "comment": "+4.4: a knight for a pawn up, with no compensation."
+    },
+    {
+     "line": [
+      {
+       "san": "Bxe7"
+      },
+      {
+       "san": "Nxc3",
+       "comment": "the other capture, hitting e2 instead of d2"
+      },
+      {
+       "san": "Bxd8",
+       "comment": "White takes the queen first; the c3 knight still hangs to Qd2 and b2"
+      },
+      {
+       "san": "Nxe2"
+      },
+      {
+       "san": "Nxe2"
+      }
+     ],
+     "comment": "+7.2: even worse; even after ...Nc6xd8 wins the bishop back, Black is down a queen for a minor piece."
+    }
+   ]
+  },
+  "20": {
+   "comment": "The point of the trick: the pawn is won and Black has the bishop pair."
+  },
+  "35": {
+   "comment": "He worked this out at the board: 'fou prend c6 échec, il reprend avec le fou, je reprends avec la tour', and it wins a clean pawn (+3.8)."
+  }
+ }
+}

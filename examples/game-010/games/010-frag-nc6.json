@@ -1,0 +1,84 @@
+[
+  {
+    "ply": 21,
+    "glyph": "?!",
+    "comment": "White is a pawn down after the 9...Nxe4 trick, and the compensation is one thing: the d6 pawn is backward on a half-open file, and Black's king is still in the centre. 11.g3 does nothing for that. It sends the bishop to e7, the square it wanted anyway (it guards d6 from there), and White has spent a tempo and loosened f3/h3 to help it get there. The live comment was 'Ça peut lui laisser le doute' (it may leave him some doubt), but the retreat is obvious. After 11...Be7 the engine's best is still 12.c4, so g3 simply cost a move: -1.9 instead of -1.3.",
+    "variations": [
+      {
+        "line": [
+          {"san": "c4", "comment": "the point: ...d5 is Black's freeing move (it gets rid of the d6 target and hits Ne4). With c4 in, ...d5 either can't be played or costs Black an isolated pawn."},
+          {"san": "O-O", "comment": "Black ignores the bishop question; 11...Be7 12.Rd1 d5 13.Ng3 is -1.2, the game position with c4 in place of g3"},
+          {"san": "Rd1", "comment": "rook onto the d-file first: every White piece is lined up on d6"},
+          {"san": "d5", "comment": "Black frees himself anyway, but only at the price of a structural concession"},
+          {"san": "cxd5"},
+          {"san": "exd5", "comment": "isolated d-pawn: White has a fixed target again, now on d5"},
+          {"san": "Nc3", "comment": "the knight retreats with pressure on d5 instead of being kicked around"},
+          {"san": "Bg5"},
+          {"san": "Qc2"}
+        ],
+        "comment": "-1.3: still a pawn down, but White has a fixed target and a plan (pieces on d5, O-O, Rd1)."
+      },
+      {
+        "line": [
+          {"san": "c4"},
+          {"san": "d5", "comment": "immediately"},
+          {"san": "cxd5"},
+          {"san": "exd5"},
+          {"san": "Nc3"},
+          {"san": "Nc6"},
+          {"san": "Qe3+", "comment": "the uncastled king pays: Black must block and accept the queen trade"},
+          {"san": "Qe7"},
+          {"san": "Qxe7+"},
+          {"san": "Nxe7"}
+        ],
+        "comment": "-1.3: an isolated d5 pawn in an endgame-like position, the kind of structure where a pawn deficit can be held."
+      }
+    ]
+  },
+  {
+    "ply": 23,
+    "glyph": "?!",
+    "comment": "Here the thinking was 'Propose des échanges. Est-ce que c'est bien pour moi d'échanger? Est-ce que je récupérerai pas ... le pion que j'ai perdu?' (offer trades, does that help me win the pawn back?). The instinct is right: the pawn comes back through pressure on d6, and trades that open the d-file help. But 12.O-O-O does not stop Black from removing the target: 12...d5! 13.Nc3 and Black has a sound extra pawn with d5/e6 in the centre (-2.2 in the engine line). 12.c4 again keeps ...d5 from being free. After 12...d5 13.cxd5 exd5 Black has an isolated pawn (-1.6), and White keeps a structure to aim at. The gap is small (0.35); the lesson is structural. When you are a pawn down for pressure on a weak pawn, first stop that pawn from advancing, then bring up pieces.",
+    "variations": [
+      {
+        "line": [
+          {"san": "c4", "comment": "clamps d5"},
+          {"san": "O-O", "comment": "12...d5 13.cxd5 exd5 is -1.6: the freeing push costs Black an isolated pawn"},
+          {"san": "O-O", "comment": "short castling here, because the fight is in the centre and White has no reason to put the king on the side where c4 has already loosened things"},
+          {"san": "Nc6"},
+          {"san": "Rad1", "comment": "d6 is attacked by the knight, queen and rook, so Black has to act"},
+          {"san": "d5"},
+          {"san": "Nc3", "comment": "the knight moves back with tempo on d5; Black gets ...d5 in but has spent moves on it, and the c4 pawn keeps the centre in contact"}
+        ],
+        "comment": "-1.8: still a pawn down, but Black has had to spend time to free himself."
+      }
+    ]
+  },
+  {
+    "ply": 24,
+    "glyph": "??",
+    "comment": "Before this move d6 was safe for one reason: White's own knight on d4 blocked the d-file, so the Qd2/Rd1 battery could not reach d6. (12...O-O 13.Nxd6? fails to 13...Qxd6, -4.8.) 12...Nc6 offers the trade that removes that knight: 13.Nxc6 bxc6 is forced, since 13...Qc7 14.Nxe7 is +5.5, and now d6 has three attackers (Ne4, Qd2, Rd1) and two defenders (Be7, Qd8). 14.Nxd6+ comes with check, so Black cannot add a defender, and the trades end with a White piece on d6. White gets the pawn back, the c6/a6 pawns are weak, the king has not castled, and the eval goes from -2.2 to +2.3. The rule: when an opponent's piece is blocking its own file, don't trade it off for him.",
+    "variations": [
+      {
+        "line": [
+          {"san": "d5", "comment": "the same freeing push again: it removes the d6 target and kicks the knight"},
+          {"san": "Nc3"},
+          {"san": "e5", "comment": "space with tempo on Nd4"},
+          {"san": "Nb3"},
+          {"san": "d4", "comment": "the knight is kicked again; Black's pawns take the centre"},
+          {"san": "Ne4"},
+          {"san": "O-O", "comment": "castled, a sound extra pawn, and a mobile centre (the engine continues ...f5 and ...e4)"}
+        ],
+        "comment": "-2.3: Black stays a clean pawn up, with no target left on the d-file."
+      },
+      {
+        "line": [
+          {"san": "O-O", "comment": "also fine (-2.0). The d6 pawn is not hanging yet:"},
+          {"san": "Nxd6", "comment": "grabbing it fails because the Nd4 blocks the queen's path to d6"},
+          {"san": "Qxd6"}
+        ],
+        "comment": "-4.8: count the attackers only on open lines. The d4 knight kept Qd2 and Rd1 out of the fight until 12...Nc6 offered to trade it off."
+      }
+    ]
+  }
+]

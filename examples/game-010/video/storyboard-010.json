@@ -1,0 +1,352 @@
+{
+ "title": "Count to the last capture",
+ "subtitle": "Game 010 · le_brumar vs Chess_player1245 · Najdorf",
+ "pgn": "../games/010-le_brumar-vs-Chess_player1245.pgn",
+ "sweep": "../games/010-le_brumar-vs-Chess_player1245-sweep.json",
+ "bridge_sec": 0.6,
+ "bridge_run_max": 5.0,
+ "tts": {
+  "engine": "piper",
+  "model": "voices/en_US-lessac-medium.onnx"
+ },
+ "segments": [
+  {
+   "shots": [
+    {
+     "ply": 5,
+     "caption": "3.d4",
+     "note": "The Open Sicilian",
+     "eval": 35,
+     "narration": "Game ten. You are White, fifteen minutes plus ten seconds, and you win in forty moves. Before move one you decided to meet the Sicilian the open way, and you recorded yourself thinking out loud until move thirty one."
+    },
+    {
+     "ply": 10,
+     "caption": "5...a6",
+     "note": "The Najdorf",
+     "eval": 44,
+     "lead": 3.0,
+     "narration": "The Najdorf. Three acts to come. A planning question you asked out loud at move eight. A trick you saw coming and still counted one move short. And a rook ending you converted with a plan you also said out loud."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 11,
+     "caption": "6.Bg5",
+     "note": "The main line",
+     "eval": 22,
+     "arrows": "g5f6y",
+     "narration": "You weighed bishop to c4 against bishop to g5, and chose g5 so that you could always take the knight. The engine ranks it first."
+    },
+    {
+     "ply": 12,
+     "caption": "6...h6?!",
+     "note": "One move too early",
+     "eval": 93,
+     "arrows": "h6g5r,e7e7y",
+     "narration": "Pawn to h6 asks the bishop the question one move too early. The pawn on e7 still blocks the queen, so if you take on f6, Black has to recapture with a pawn."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 13,
+     "caption": "7.Bh4?!",
+     "note": "Better: 7.Bxf6",
+     "eval": 34,
+     "narration": "You retreated, naturally, as you put it."
+    },
+    {
+     "ply": 12,
+     "var": "Bxf6 gxf6 Bc4 h5",
+     "caption": "7.Bxf6 gxf6 8.Bc4 h5",
+     "note": "A lasting plus, no tactics",
+     "eval": 100,
+     "arrows": "d5d5y,f5f5y,h5h5r",
+     "hold": 1.5,
+     "narration": "Taking was worth more than half a pawn. After the pawn recaptures, Black's king has no safe home, d5 and f5 are holes, and Black must spend pawn to h5 just to keep your queen out. The h6 move becomes a lost tempo. When a pawn questions your pinning bishop, check whether taking wrecks the structure before you retreat."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 14,
+     "caption": "7...e6",
+     "note": "The plan pause",
+     "eval": 44,
+     "arrows": "f2f2y,e4e4y,h4h4y",
+     "hold": 2.0,
+     "narration": "Here is the quiet moment of the game. Nothing is hanging and there is no tactic, only a question, and you asked it out loud. Bishop to c4 or to e2. Castle short or long. Pawn to f4 now, or later. At one common depth, bishop to e2, queen to e2, queen to f3 and pawn to a3 all sit within about a tenth of a pawn. Pawn to f4 stands half a pawn clear. So among the quiet moves the choice did not matter. The plan did, and it starts with the pawn you postponed."
+    },
+    {
+     "ply": 14,
+     "var": "f4 Qb6 a3 Be7 Bf2 Qc7 Qf3",
+     "caption": "8.f4 ... 11.Qf3",
+     "note": "Your plan",
+     "eval": 50,
+     "arrows": "f2d4g,f3e4g",
+     "narration": "Your plan: f4 at once. The bishop comes home from h4 to f2, where it guards d4 against the queen raid. The queen goes to f3 to hold e4, and you castle long. Two rules. The pawn on e4 always has a second defender. The bishop never waits on h4."
+    },
+    {
+     "ply": 14,
+     "caption": "Black's plan",
+     "note": "...b5-b4 and ...g5",
+     "eval": 44,
+     "arrows": "b7b4r,g7g5r,c3e4b",
+     "narration": "Black's plan is the classic Najdorf one. Pawn to b5 and b4 chases the c3 knight, the only defender of e4. Pawn to g5 chases your bishop off h4. Both plans are about the same two things: the pawn on e4, and the loose bishop on h4."
+    },
+    {
+     "ply": 17,
+     "caption": "9.Qd2",
+     "note": "The fault line",
+     "eval": -38,
+     "arrows": "f6e4r,e7h4b",
+     "hold": 1.5,
+     "narration": "You chose bishop to e2, then queen to d2, and that is where the fault line opened. Your e4 pawn had one defender, the h4 bishop had none, and the only thing standing between it and the e7 bishop was the knight on f6. In the engine's plan, knight takes e4 simply loses a piece, because the queen on f3 covers the square."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 18,
+     "caption": "9...Nxe4??",
+     "note": "The trick, and its hole",
+     "eval": 407,
+     "arrows": "e4d2r,e4c3r,e7h4b",
+     "narration": "Right after playing queen to d2 you said it: that is bad, the knight takes e4. And it came. The knight hits your queen and your knight, and it unmasks the e7 bishop onto yours. But the unmasked bishop is loose too."
+    },
+    {
+     "ply": 18,
+     "var": "Bxe7 Nxd2 Bxd8",
+     "caption": "10.Bxe7 Nxd2 11.Bxd8",
+     "note": "Both pieces hang",
+     "eval": 410,
+     "arrows": "d2d2r,d8d8r",
+     "hold": 2.0,
+     "narration": "You looked at exactly this line. Bishop takes, knight takes, bishop takes, and you called it a mass trade. One move further, Black's knight is still on d2 and your bishop is on d8. Both are hanging, Black is to move, and only one can be saved. White comes out a clean piece up."
+    },
+    {
+     "ply": 20,
+     "caption": "10...Bxh4",
+     "note": "A pawn down, no attack",
+     "eval": -130,
+     "arrows": "h4f2r",
+     "narration": "Instead the knight took on e4 and the bishop took on h4. Let's call it an attack, you said. The engine sees no attack: Black has the pawn and the bishop pair, and the bishop on h4 is already eyeing f2."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 23,
+     "caption": "12.O-O-O?!",
+     "note": "Better: 12.c4",
+     "eval": -217,
+     "arrows": "c2c4g,d6d5r,d6d6y",
+     "narration": "A pawn down, your compensation was one weak pawn, on d6. You asked whether trades would win it back, and the instinct was right. But first stop the pawn from advancing. Pawn to c4 was on offer twice, and it keeps pawn to d5 from being free."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 24,
+     "caption": "12...Nc6??",
+     "note": "Trading off the plug",
+     "eval": 223,
+     "arrows": "d2d6b,d4d4y",
+     "narration": "Then Black handed it back. Until now d6 was safe for one reason: your own knight on d4 blocked the file, so the queen and rook could not reach it. Knight to c6 offers to trade off that plug."
+    },
+    {
+     "ply": 27,
+     "caption": "14.Nxd6+",
+     "note": "The pawn comes back",
+     "eval": 242,
+     "arrows": "d6e8r",
+     "narration": "Knight takes, pawn takes, and knight takes d6 with check, so Black never gets to add a defender. The pawn is back, and Black's queenside is in pieces."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 33,
+     "caption": "17.Bf3??",
+     "note": "Better: 17.Rhd1",
+     "eval": 89,
+     "arrows": "f3c6g,d6d7g",
+     "narration": "Queens off, a pawn up, and you had a plan: bishop to f3 against c6, then doubled rooks on the seventh rank. The plan is fine. The order is not."
+    },
+    {
+     "ply": 33,
+     "var": "Ke7",
+     "caption": "17...Ke7!",
+     "note": "Missed by both sides",
+     "eval": 98,
+     "arrows": "e7d6r,d7d7r",
+     "hold": 1.5,
+     "narration": "King to e7 hits the rook on d6, and now bishop takes c6 is no longer check, so the king simply takes the rook. The king also covers d7, which shuts your seventh rank. The engine gives under one pawn."
+    },
+    {
+     "ply": 32,
+     "var": "Rhd1 Ke7 Rd7+ Kf6 Rxb7",
+     "caption": "17.Rhd1 Ke7 18.Rd7+",
+     "note": "Defend first, then attack",
+     "eval": 570,
+     "arrows": "d7b7g",
+     "narration": "Rook to d1 first defends d6. Then the same king move runs into a check on d7, and the bishop on b7 falls."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 34,
+     "caption": "17...Rd8??",
+     "note": "c6 was attacked twice",
+     "eval": 356,
+     "arrows": "f3c6g,c6e8r",
+     "narration": "Black played rook to d8 instead, and you saw what it allowed. You worked out bishop takes c6 with check at the board, and it wins a clean pawn."
+    },
+    {
+     "ply": 37,
+     "caption": "19.Rxc6",
+     "note": "Three pawns against one",
+     "eval": 383,
+     "arrows": "a2a2g,b2b2g,c2c2g,a6a6r",
+     "narration": "The rook ending that follows is the real test of the game. You are a pawn up, with three pawns against one on the queenside."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 45,
+     "caption": "23.b3",
+     "note": "Luft, and it prepares c4",
+     "eval": 490,
+     "arrows": "c1b2g,c2c4g",
+     "narration": "At move twenty three you weighed two plans: walk the king over to collect the a-pawn, or roll the c-pawn at once. Pawn to b3 serves both, an escape square that also prepares c4."
+    },
+    {
+     "ply": 47,
+     "caption": "24.Kb2",
+     "note": "Equal to c4: both win",
+     "eval": 513,
+     "arrows": "a5a5y",
+     "narration": "You hesitated between king to b2 and c4. The engine scores them exactly the same."
+    },
+    {
+     "ply": 51,
+     "caption": "26.c4",
+     "note": "The engine's first choice",
+     "eval": 554,
+     "arrows": "c4c5g",
+     "narration": "Once the rooks came off, you pushed c4 to put on the pressure, and that was the engine's first choice."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 53,
+     "caption": "27.a3!",
+     "note": "a3 before c5",
+     "eval": 580,
+     "arrows": "b3b4g,c4c5g",
+     "narration": "Then came your clearest decision of the game. The simple plan, you said: a3, b4, and push both pawns."
+    },
+    {
+     "ply": 52,
+     "var": "c5 Rc8 c6 f6 Kc3 Ke5",
+     "caption": "27.c5? Rc8 ... Ke5",
+     "note": "The lone pawn falls",
+     "eval": 20,
+     "arrows": "c8c6r,e5d6r",
+     "hold": 1.5,
+     "narration": "Push c5 at once, and the lone pawn falls. The rook attacks it from c8, b4 cannot support it while the a-pawn can take, and the king drives your rook away. The win is gone."
+    },
+    {
+     "ply": 57,
+     "caption": "29.axb4",
+     "note": "Two connected passers",
+     "eval": 581,
+     "arrows": "b4b4g,c4c4g",
+     "narration": "With a3 first, the trade on b4 leaves you two connected passed pawns."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 59,
+     "caption": "30.Rd1?!",
+     "note": "Rd2 guards the second rank",
+     "eval": 610,
+     "arrows": "d1d2g,f2f2y",
+     "narration": "Black's king went raiding on the other wing. Your rook retreated to d1, to avoid complications. On d2 it would still guard f2, and the raid would find nothing to take."
+    },
+    {
+     "ply": 61,
+     "caption": "31.c5",
+     "note": "Not idiotic",
+     "eval": 673,
+     "arrows": "c5c6g",
+     "narration": "When you finally pushed c5, you called yourself an idiot for not doing it earlier. Before a3 it would have thrown the win away, and a move later it was worth a fifth of a pawn. A move-order detail, not a mistake."
+    },
+    {
+     "ply": 64,
+     "caption": "32...Kxf2",
+     "note": "Too slow",
+     "eval": 1102,
+     "arrows": "c6c7g",
+     "narration": "It did fall, but the raid is too slow. Every king move on the kingside is a free push for your c-pawn."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 68,
+     "caption": "34...e5",
+     "note": "The race",
+     "eval": "mate",
+     "arrows": "e5e1r,b4b8g",
+     "narration": "The final race. Black is lost after any move here, and the race shows why: the e-pawn runs, your b-pawn runs, and Black is one tempo short."
+    },
+    {
+     "ply": 76,
+     "caption": "38...e2",
+     "note": "One step from queening",
+     "eval": "mate",
+     "arrows": "e2e1r,c7f7g",
+     "narration": "Pawn to e2 is one step from queening, but your rook needs only one move to cover e1."
+    },
+    {
+     "ply": 79,
+     "caption": "40.Re7",
+     "note": "1-0",
+     "eval": "mate",
+     "arrows": "e7e2g,b7b8g",
+     "narration": "Rook takes f7 with check, then rook to e7, behind the pawn. Pawn to b8 is next, and Black resigns."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 79,
+     "caption": "1-0",
+     "note": "The lesson",
+     "eval": "mate",
+     "hold": 1.0,
+     "narration": "One lesson to keep. When the position asks a planning question, the answer is usually the move that shores up your weak points now, not the one that keeps every option open. At move eight that was f4. The rook ending, you planned out loud and played well."
+    }
+   ]
+  }
+ ]
+}

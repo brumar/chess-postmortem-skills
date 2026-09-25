@@ -1,0 +1,88 @@
+[
+  {
+    "ply": 17,
+    "comment": "Heading for O-O-O. Right after playing it: \"D2 c'est pas bon... cavalier prend E4, forcément\" (Qd2 was bad, the knight takes e4). It was not a pawn blunder: 9...Nxe4 hits d2 and c3, but 10.Bxe7 hits d8 back and wins a piece. The real cost is about 0.3 (-0.4 against -0.1 for 9.f4 or 9.a4). Qd2 does step onto a square a knight on e4 attacks, so the tactic has to be calculated, not dismissed.",
+    "variations": [
+      {
+        "line": [
+          {"san": "f4", "comment": "the sweep's choice: e4 gets a second defender, so ...Nxe4 is never on"},
+          {"san": "Qb6"},
+          {"san": "Qd3", "comment": "only now the queen; the b2 pawn is offered for time"}
+        ],
+        "comment": "-0.2: roughly equal, with no loose queen on d2."
+      }
+    ]
+  },
+  {
+    "ply": 18,
+    "glyph": "??",
+    "comment": "The trick: the knight leaves f6 with tempo on Qd2 and Nc3, and in doing so opens the e7-h4 diagonal, so after 10.Nxe4 Bxh4 Black has won the e4 pawn. The flaw is that the unmasked bishop on e7 is itself loose to Bh4, and taking it hits the queen on d8. White gets to answer a queen attack with a queen attack, and after the trades Black's knight is stranded on d2 (see 10.Bxe7). -0.3 with a normal move becomes +4.0 with correct play. It worked in the game only because White missed the counter.",
+    "variations": [
+      {
+        "line": [
+          {"san": "O-O"},
+          {"san": "Qe3", "comment": "the queen leaves the square the knight can fork from and puts a second eye on e4"},
+          {"san": "b5"},
+          {"san": "Bf3"},
+          {"san": "b4", "comment": "the standard queenside push: it chases Nc3 away from guarding e4"}
+        ],
+        "comment": "-0.3: normal Najdorf play, Black comfortable."
+      }
+    ]
+  },
+  {
+    "ply": 19,
+    "glyph": "??",
+    "comment": "He did look at 10.Bxe7: \"Fou prend, cavalier prend, fou prend, et on échange tout\" (bishop takes, knight takes, bishop takes, everything gets traded), and dropped it as an even mass trade. His count stopped one move early. After 10.Bxe7 Nxd2 11.Bxd8, both queens and one pair of bishops are off, but Black's knight is still on d2 and White's bishop is on d8, both en prise, with Black to move. Black can save only one: 11...Kxd8 12.Kxd2 leaves White a knight up for a pawn (+4.0). Declining with 10...Qxe7 fails to 11.Nxe4. Instead 10.Nxe4 Bxh4 is simply a pawn down (-1.4), and he knew it: \"je le laisse prendre, et je fais un grand roque\" (I let him take and castle long). The pawn buys no attack: Black keeps the bishop pair, and the h4 bishop hits f2, which will cost White g3 and a tempo. Lesson: when a trade sequence involves mutual attacks on queens, keep counting to the last capture. The last piece left in the other side's camp decides the material.",
+    "variations": [
+      {
+        "line": [
+          {"san": "Bxe7", "comment": "takes the piece the trick unmasked, with tempo on d8"},
+          {"san": "Nxd2", "comment": "the most natural reply; the knight goes deeper into White's camp"},
+          {"san": "Bxd8", "comment": "queen back. Now Nd2 and Bd8 are both hanging, and only Black can capture first"},
+          {"san": "Kxd8"},
+          {"san": "Kxd2", "comment": "the move missing from 'on échange tout': queens and bishops are traded, but the knight that took e4 and d2 is gone for nothing"},
+          {"san": "Nc6"},
+          {"san": "Nxc6+"},
+          {"san": "bxc6"}
+        ],
+        "comment": "+4.1: a clean piece for a pawn in a queenless middlegame, with Black's queenside pawns broken."
+      },
+      {
+        "line": [
+          {"san": "Bxe7"},
+          {"san": "Nxd2"},
+          {"san": "Bxd8"},
+          {"san": "Nf3+", "comment": "the desperado check: the knight is lost anyway, so it tries to wreck the kingside on the way out"},
+          {"san": "gxf3"},
+          {"san": "Kxd8"}
+        ],
+        "comment": "+4.5: the doubled f-pawns don't matter; White is still a piece up for a pawn."
+      },
+      {
+        "line": [
+          {"san": "Bxe7"},
+          {"san": "Qxe7", "comment": "saves the bishop's worth by recapturing, but spends the move Black needed to take on d2"},
+          {"san": "Nxe4", "comment": "the attacker of d2 simply disappears; White's queen was never in danger"},
+          {"san": "O-O"},
+          {"san": "O-O"}
+        ],
+        "comment": "+4.4: a knight for a pawn up, with no compensation."
+      },
+      {
+        "line": [
+          {"san": "Bxe7"},
+          {"san": "Nxc3", "comment": "the other capture, hitting e2 instead of d2"},
+          {"san": "Bxd8", "comment": "White takes the queen first; the c3 knight still hangs to Qd2 and b2"},
+          {"san": "Nxe2"},
+          {"san": "Nxe2"}
+        ],
+        "comment": "+7.2: even worse; even after ...Nc6xd8 wins the bishop back, Black is down a queen for a minor piece."
+      }
+    ]
+  },
+  {
+    "ply": 20,
+    "comment": "The point of the trick: the pawn is won and Black has the bishop pair. White's most useful try is 11.c4 (-1.3), which gets ready to answer ...d5 with cxd5 and leave Black an isolated d-pawn. 11.g3, played in the game, spends a tempo on f2 and loosens the long diagonal."
+  }
+]
