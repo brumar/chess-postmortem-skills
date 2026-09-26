@@ -9,7 +9,8 @@ ABSOLUTE out path (a relative one resolves against that directory).
 Storyboard format:
 {
   "title": "...", "subtitle": "...",
-  "pgn": "relative/path/to/game.pgn",      # mainline source
+  "pgn": "relative/path/to/game.pgn",      # mainline source; a [FEN] tag sets the start
+         # position (single-position videos: no moves, every shot at ply 0)
   "sweep": "relative/path/to/sweep.json",  # per-ply evals (bridge shots' gauge)
   "tts": { "engine": "piper", "model": "voices/en_US-lessac-medium.onnx" },
          # or { "engine": "espeak", "voice": "en-us+m3", "speed": 160 }
@@ -91,6 +92,7 @@ BRIDGE_LEAD = 1.2      # narration may start this early, over the tail of a brid
 MIN_SETTLE = 0.8       # a shot with narration still holds its settled frame this long
 MIN_SHOT_SEC = 1.2     # a shot that got no sentences at all is held this long
 FPS = 30
+START_FEN = chess.STARTING_FEN  # overridden by the PGN's [FEN] tag (single-position videos)
 BG = (24, 22, 20)
 FG = (232, 228, 220)
 DIM = (150, 145, 138)
@@ -154,7 +156,7 @@ def move_label(ply, san):
 
 
 def position_for(game_moves, ply, var):
-    board = chess.Board()
+    board = chess.Board(START_FEN)
     for mv in game_moves[:ply]:
         board.push(mv)
     for san in var.split():
@@ -381,7 +383,9 @@ def main():
 
     game = chess.pgn.read_game(open(os.path.join(base, sb["pgn"])))
     game_moves = list(game.mainline_moves())
-    b = chess.Board()
+    global START_FEN
+    START_FEN = game.board().fen()
+    b = chess.Board(START_FEN)
     sans = []
     for mv in game_moves:
         sans.append(b.san(mv))
@@ -558,7 +562,7 @@ def main():
 
         # backward jump: fast undo slides, most recent move first
         if back:
-            pb = chess.Board()
+            pb = chess.Board(START_FEN)
             for mv in prev_stack:
                 pb.push(mv)
             while len(pb.move_stack) > L:
@@ -568,7 +572,7 @@ def main():
                         frames=REW_FRAMES, reverse=True)
                 spent += rew_t
 
-        rb = chess.Board()
+        rb = chess.Board(START_FEN)
         for mv in tstack[:L]:
             rb.push(mv)
 

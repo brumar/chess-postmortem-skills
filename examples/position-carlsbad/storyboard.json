@@ -1,0 +1,164 @@
+{
+ "title": "One position: the fight for f5",
+ "subtitle": "Queen's Gambit structure, White to move",
+ "pgn": "position.pgn",
+ "tts": {
+  "engine": "piper",
+  "model": "voices/en_US-lessac-medium.onnx"
+ },
+ "segments": [
+  {
+   "shots": [
+    {
+     "ply": 0,
+     "arrows": "c8c8r,d3d3g,f4f4y,e7e7y",
+     "caption": "The position",
+     "note": "No tactic. Only a question.",
+     "eval": 39,
+     "hold": 2.0,
+     "narration": "White to move, and nothing is hanging. There is no tactic here, only a question: what is each side trying to do? The pawns tell you. White has d4 and e3, Black has c6 and d5, and the c and e pawns are gone. This is the Carlsbad structure, from the Queen's Gambit Exchange. Now look at the bishops through the pawns. Black's pawns sit on light squares, so the bishop on c8 is Black's bad bishop, locked in. White's bishop on d3 is the good one. Most of what follows comes from that one fact. Stockfish gives White about a third of a pawn, and five moves score within a tenth of each other. The move hardly matters. The plan does."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 0,
+     "arrows": "c2h7y,f5f5r,h7h7r",
+     "caption": "The battery",
+     "note": "Queen and bishop aim at h7",
+     "eval": 39,
+     "narration": "Start with the most important line on the board. The queen on c2 and the bishop on d3 stand on the same diagonal, pointing at f5 and h7. That battery decides what Black is allowed to do."
+    },
+    {
+     "ply": 0,
+     "var": "h3 Bf5 Bxf5 Nxf5 Qxf5",
+     "arrows": "f5f5r",
+     "caption": "...Bf5?",
+     "note": "Loses a piece on f5",
+     "eval": 513,
+     "hold": 1.5,
+     "narration": "Black's natural wish is to trade off the bad bishop on c8 with bishop to f5. Played right now, it drops a piece. White takes on f5, the knight recaptures, and the queen takes the knight. Knight to f5 fails the same way."
+    },
+    {
+     "ply": 0,
+     "var": "h3 Nh5 Bxh7+",
+     "arrows": "d3h7r",
+     "caption": "...Nh5?",
+     "note": "The f6 knight guards h7",
+     "eval": 224,
+     "narration": "And the knight on f6 cannot go hunting the bishop on f4, because it is the only guard of h7. Knight to h5 simply loses the h pawn with check."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 0,
+     "var": "h3 g6",
+     "arrows": "g6f5g,c8f5g,d6f5g",
+     "caption": "...g6!",
+     "note": "Covers f5 and h7",
+     "eval": 30,
+     "narration": "So Black's first job is one quiet pawn move: g6. It covers f5 and blocks the diagonal to h7 in one go. After that, bishop to f5 is back on the menu, and the knight on d6 also gets f5 as a square."
+    },
+    {
+     "ply": 0,
+     "var": "h3 g6 Rfc1 Bf5 Bxf5 Nxf5",
+     "arrows": "f5f5g",
+     "caption": "Black's plan",
+     "note": "Trade the bad bishop",
+     "eval": 4,
+     "hold": 1.5,
+     "narration": "Here is Black's plan played out. Pawn to g6, bishop to f5, and the light squared bishops come off. The knight lands on f5, Black's worst piece is gone, and the evaluation drops to zero. That is the whole of Black's strategy in this structure. Everything else, like pawn to a5 against b4, is support."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 0,
+     "arrows": "d6b5g,d6c4g,d6e4g,d6f5g",
+     "caption": "The d6 knight",
+     "note": "Guards b5, c4, e4, f5",
+     "eval": 39,
+     "narration": "Black's knight on d6 deserves a look, because it cuts both ways. The good side: it watches b5, c4, e4 and f5. That is exactly where White's queenside play wants to arrive, so the minority attack will need extra preparation."
+    },
+    {
+     "ply": 0,
+     "var": "h3 g6 Rac1 c5 dxc5",
+     "arrows": "c5d6r,d6d6r",
+     "caption": "...c5? dxc5",
+     "note": "The pawn hits the knight",
+     "eval": 292,
+     "hold": 1.5,
+     "narration": "The bad side: it blocks its own bishop on e7, and it freezes the c pawn. Pawn to c5 would free Black's game, but pawn takes c5 hits the knight, and Black loses a pawn. So c6 stays where it is, a fixed target."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 0,
+     "arrows": "c3a4g,a4c5g,c1c1g,b4b4g",
+     "caption": "White's plan",
+     "note": "c-file, c5, minority attack",
+     "eval": 39,
+     "narration": "Now White's plan. The c file is half open, so a rook goes to c1, aimed at c6. The square c5 is a weak spot: only pawn to b6 can chase a piece from it, and that loosens c6 even more. So a knight wants to go to a4 and then c5."
+    },
+    {
+     "ply": 0,
+     "var": "h3 g6 Rac1 a5 Na4 Re8 Nc5",
+     "arrows": "c5c5g",
+     "caption": "...Na4, Nc5",
+     "note": "The knight reaches the hole",
+     "eval": 31,
+     "narration": "First, though, pawn to h3. It is not a waiting move. It takes g4 from the black bishop, and it clears h2 as a retreat for White's bishop. Without it, knight to h5 forces White to give up that bishop. With it, the bishop drops back to h2 and stays. Then rook to c1, knight to a4, knight to c5."
+    },
+    {
+     "ply": 0,
+     "var": "h3 g6 b4 Bf5 a4 a5 b5",
+     "arrows": "b5c6g",
+     "caption": "Minority attack",
+     "note": "b4-b5 against c6",
+     "eval": 44,
+     "narration": "The other lever is the minority attack: the a and b pawns march against three black pawns. Because the d6 knight guards b5, White needs pawn to a4 first. Then pawn to b5 hits c6, and after the exchanges Black is left with a weak pawn on c6 or on d5."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 0,
+     "var": "Bxh7+ Nxh7",
+     "arrows": "h7h7r",
+     "caption": "Bxh7+??",
+     "note": "No knight for g5, no follow-up",
+     "eval": -446,
+     "narration": "What White should not do. The battery tempts bishop takes h7 check, but with no knight able to reach g5 there is no follow-up, and White is just a piece down."
+    },
+    {
+     "ply": 0,
+     "arrows": "g2g4r,e3e4r,f4d6r",
+     "caption": "Also premature",
+     "note": "g4, e4, bishop takes d6",
+     "eval": 39,
+     "narration": "Pawn to g4 just loses the pawn. Pawn to e4 right now opens the centre while Black is fully developed, and White ends up with an isolated pawn on d4. And bishop takes d6 gives Black the two bishops for nothing. Each of these costs between half a pawn and two pawns."
+    }
+   ]
+  },
+  {
+   "shots": [
+    {
+     "ply": 0,
+     "arrows": "f5f5y,c5c5y",
+     "caption": "Verdict",
+     "note": "Two squares: f5 and c5",
+     "eval": 39,
+     "hold": 2.0,
+     "narration": "So the position is about two squares. Black wants f5, to trade the bad bishop and plant a knight. White wants c5, and a queenside pawn break. White cannot stop the bishop trade once g6 is played, so White's edge is small, a third of a pawn. The rules for White: pawn to h3, rooks to c1, knight to c5, pawns to b4 and a4, then b5. The rules for Black: g6 before any piece touches f5, then bishop to f5, and pawn to a5 to slow the minority attack."
+    }
+   ]
+  }
+ ]
+}

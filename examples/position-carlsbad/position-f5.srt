@@ -1,0 +1,272 @@
+1
+00:00:00,000 --> 00:00:02,043
+White to move, and nothing is hanging.
+
+2
+00:00:02,163 --> 00:00:04,973
+There is no tactic here, only a question:
+
+3
+00:00:05,093 --> 00:00:06,858
+what is each side trying to do?
+
+4
+00:00:06,978 --> 00:00:08,290
+The pawns tell you.
+
+5
+00:00:08,410 --> 00:00:13,890
+White has d4 and e3, Black has c6 and d5, and the c and e pawns are gone.
+
+6
+00:00:14,010 --> 00:00:17,725
+This is the Carlsbad structure, from the Queen's Gambit Exchange.
+
+7
+00:00:17,845 --> 00:00:20,062
+Now look at the bishops through the pawns.
+
+8
+00:00:20,182 --> 00:00:25,836
+Black's pawns sit on light squares, so the bishop on c8 is Black's bad bishop, locked in.
+
+9
+00:00:25,956 --> 00:00:28,104
+White's bishop on d3 is the good one.
+
+10
+00:00:28,224 --> 00:00:31,057
+Most of what follows comes from that one fact.
+
+11
+00:00:31,177 --> 00:00:36,053
+Stockfish gives White about a third of a pawn, and five moves score within a tenth of each other.
+
+12
+00:00:36,173 --> 00:00:37,555
+The move hardly matters.
+
+13
+00:00:37,675 --> 00:00:38,743
+The plan does.
+
+14
+00:00:41,563 --> 00:00:43,827
+Start with the most important line on the board.
+
+15
+00:00:43,947 --> 00:00:49,880
+The queen on c2 and the bishop on d3 stand on the same diagonal, pointing at f5 and h7.
+
+16
+00:00:50,000 --> 00:00:52,739
+That battery decides what Black is allowed to do.
+
+17
+00:00:52,859 --> 00:00:57,724
+Black's natural wish is to trade off the bad bishop on c8 with bishop to f5.
+
+18
+00:00:57,844 --> 00:01:00,027
+Played right now, it drops a piece.
+
+19
+00:01:00,147 --> 00:01:04,106
+White takes on f5, the knight recaptures, and the queen takes the knight.
+
+20
+00:01:04,226 --> 00:01:06,675
+Knight to f5 fails the same way.
+
+21
+00:01:08,295 --> 00:01:13,543
+And the knight on f6 cannot go hunting the bishop on f4, because it is the only guard of h7.
+
+22
+00:01:13,663 --> 00:01:16,775
+Knight to h5 simply loses the h pawn with check.
+
+23
+00:01:17,595 --> 00:01:20,300
+So Black's first job is one quiet pawn move:
+
+24
+00:01:20,420 --> 00:01:21,198
+g6.
+
+25
+00:01:21,318 --> 00:01:25,207
+It covers f5 and blocks the diagonal to h7 in one go.
+
+26
+00:01:25,327 --> 00:01:31,155
+After that, bishop to f5 is back on the menu, and the knight on d6 also gets f5 as a square.
+
+27
+00:01:31,275 --> 00:01:32,935
+Here is Black's plan played out.
+
+28
+00:01:33,055 --> 00:01:37,815
+Pawn to g6, bishop to f5, and the light squared bishops come off.
+
+29
+00:01:37,935 --> 00:01:43,322
+The knight lands on f5, Black's worst piece is gone, and the evaluation drops to zero.
+
+30
+00:01:43,442 --> 00:01:46,217
+That is the whole of Black's strategy in this structure.
+
+31
+00:01:46,337 --> 00:01:50,296
+Everything else, like pawn to a5 against b4, is support.
+
+32
+00:01:52,616 --> 00:01:56,633
+Black's knight on d6 deserves a look, because it cuts both ways.
+
+33
+00:01:56,753 --> 00:01:57,740
+The good side:
+
+34
+00:01:57,860 --> 00:02:01,355
+it watches b5, c4, e4 and f5.
+
+35
+00:02:01,475 --> 00:02:07,860
+That is exactly where White's queenside play wants to arrive, so the minority attack will need extra preparation.
+
+36
+00:02:07,980 --> 00:02:09,060
+The bad side:
+
+37
+00:02:09,180 --> 00:02:13,197
+it blocks its own bishop on e7, and it freezes the c pawn.
+
+38
+00:02:13,317 --> 00:02:18,994
+Pawn to c5 would free Black's game, but pawn takes c5 hits the knight, and Black loses a pawn.
+
+39
+00:02:19,114 --> 00:02:21,773
+So c6 stays where it is, a fixed target.
+
+40
+00:02:24,093 --> 00:02:25,312
+Now White's plan.
+
+41
+00:02:25,432 --> 00:02:30,006
+The c file is half open, so a rook goes to c1, aimed at c6.
+
+42
+00:02:30,126 --> 00:02:32,309
+The square c5 is a weak spot:
+
+43
+00:02:32,429 --> 00:02:36,887
+only pawn to b6 can chase a piece from it, and that loosens c6 even more.
+
+44
+00:02:37,007 --> 00:02:39,596
+So a knight wants to go to a4 and then c5.
+
+45
+00:02:39,716 --> 00:02:41,771
+First, though, pawn to h3.
+
+46
+00:02:41,891 --> 00:02:43,238
+It is not a waiting move.
+
+47
+00:02:43,358 --> 00:02:48,606
+It takes g4 from the black bishop, and it clears h2 as a retreat for White's bishop.
+
+48
+00:02:48,726 --> 00:02:52,534
+Without it, knight to h5 forces White to give up that bishop.
+
+49
+00:02:52,654 --> 00:02:56,021
+With it, the bishop drops back to h2 and stays.
+
+50
+00:02:56,141 --> 00:02:59,589
+Then rook to c1, knight to a4, knight to c5.
+
+51
+00:02:59,709 --> 00:03:01,926
+The other lever is the minority attack:
+
+52
+00:03:02,046 --> 00:03:05,053
+the a and b pawns march against three black pawns.
+
+53
+00:03:05,173 --> 00:03:09,794
+Because the d6 knight guards b5, White needs pawn to a4 first.
+
+54
+00:03:09,914 --> 00:03:16,915
+Then pawn to b5 hits c6, and after the exchanges Black is left with a weak pawn on c6 or on d5.
+
+55
+00:03:17,735 --> 00:03:19,221
+What White should not do.
+
+56
+00:03:19,341 --> 00:03:27,282
+The battery tempts bishop takes h7 check, but with no knight able to reach g5 there is no follow-up, and White is just a piece down.
+
+57
+00:03:27,402 --> 00:03:29,492
+Pawn to g4 just loses the pawn.
+
+58
+00:03:29,612 --> 00:03:36,532
+Pawn to e4 right now opens the centre while Black is fully developed, and White ends up with an isolated pawn on d4.
+
+59
+00:03:36,652 --> 00:03:39,960
+And bishop takes d6 gives Black the two bishops for nothing.
+
+60
+00:03:40,080 --> 00:03:43,227
+Each of these costs between half a pawn and two pawns.
+
+61
+00:03:44,047 --> 00:03:46,079
+So the position is about two squares.
+
+62
+00:03:46,199 --> 00:03:49,542
+Black wants f5, to trade the bad bishop and plant a knight.
+
+63
+00:03:49,662 --> 00:03:52,611
+White wants c5, and a queenside pawn break.
+
+64
+00:03:52,731 --> 00:03:58,792
+White cannot stop the bishop trade once g6 is played, so White's edge is small, a third of a pawn.
+
+65
+00:03:58,912 --> 00:04:00,096
+The rules for White:
+
+66
+00:04:00,216 --> 00:04:06,079
+pawn to h3, rooks to c1, knight to c5, pawns to b4 and a4, then b5.
+
+67
+00:04:06,199 --> 00:04:07,604
+The rules for Black:
+
+68
+00:04:07,724 --> 00:04:14,376
+g6 before any piece touches f5, then bishop to f5, and pawn to a5 to slow the minority attack.
+

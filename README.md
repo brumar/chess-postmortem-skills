@@ -91,6 +91,7 @@ check that position with the engine.
 |---|---|
 | `chess-analysis` | Stockfish sweep of every move, then parallel "investigator" subagents that interrogate the engine with naive questions until every mistake is explained. Output: a layered annotated PGN, a standalone HTML analysis board, and one "plan pause" per game where both sides' plans are derived from the engine. Handles the think-aloud recording: whisper.cpp transcription, alignment to moves via the PGN clocks. |
 | `chess-video` | A narrated video of the whole game (board, arrows, eval gauge, piper TTS, burned-in subtitles) built from a storyboard, plus an interactive HTML viewer. |
+| `chess-position` | Study of a single position (FEN or screenshot). Asks first whether you want a positional or a tactical analysis, then explains the plans or the tactics in human terms, every claim checked with Stockfish. Optional narrated video. Example: [`examples/position-carlsbad/`](examples/position-carlsbad/). |
 | `chess-play` | Play a game against Claude over PGN files, with the board rendered to PNG for vision and adversarial blunder-check subagents. No engine. |
 
 The skills are written for Claude to read, so the SKILL.md files double as
