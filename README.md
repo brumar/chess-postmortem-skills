@@ -6,7 +6,7 @@ checked against Stockfish, and a narrated video of the whole game.
 
 ## The video
 
-https://github.com/user-attachments/assets/ebd443e1-aeac-41d3-a868-64d521223a9b
+**[Watch the video (mp4, 10 MB)](https://github.com/brumar/chess-postmortem-skills/raw/main/examples/game-010/video/out-010.mp4)**
 
 *6:49, English narration, subtitles.*
 
