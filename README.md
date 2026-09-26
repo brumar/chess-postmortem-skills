@@ -6,9 +6,9 @@ checked against Stockfish, and a narrated video of the whole game.
 
 ## The video
 
-[![Narrated post-mortem of game 010](examples/game-010/video/thumbnail.jpg)](examples/game-010/video/out-010.mp4)
+https://github.com/user-attachments/assets/ebd443e1-aeac-41d3-a868-64d521223a9b
 
-*Click the image to open the video (6:49, English narration, subtitles).*
+*6:49, English narration, subtitles.*
 
 This is a real game of mine: a 15+10 rapid on lichess
 ([5KmlrdyT](https://lichess.org/5KmlrdyT)), White, Open Sicilian against a
