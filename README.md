@@ -4,6 +4,10 @@ Claude Code skills that turn one of your chess games into a post-mortem
 you can actually read: plain-language explanations of your mistakes,
 checked against Stockfish, and a narrated video of the whole game.
 
+Edit: Damned this hit front page of HackerNews. You can go there for insightful conversations: https://news.ycombinator.com/item?id=49857528 
+
+I should have selected a game *without* a massive blunder on my side ahah.
+
 ## The video
 
 https://github.com/user-attachments/assets/ebd443e1-aeac-41d3-a868-64d521223a9b
